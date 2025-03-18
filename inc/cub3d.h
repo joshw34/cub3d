@@ -23,12 +23,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#define FLOOR "./assets/floor.xpm"
-#define WALL "./assets/wall.xpm"
-#define PLAYER_D "./assets/player_d.xpm"
-#define EXIT_C "./assets/exit_c.xpm"
-#define COLLECT "./assets/collect.xpm"
-
 #define W 119
 #define A 97
 #define S 115
@@ -41,7 +35,7 @@
 
 #define ESC 65307
 
-typedef struct s_m_data {
+/*typedef struct s_m_data {
   int rows;
   int cols;
   int p_row;
@@ -52,11 +46,26 @@ typedef struct s_m_data {
   int e;
   int p;
   int moves;
-} t_m_data;
+} t_m_data;*/
 
-typedef struct s_data {
-  void *init;
-  void *win;
+typedef struct  s_map
+{
+  int x_low;
+  int x_high;
+  int y_low;
+  int y_high;
+  int x;
+  int y;
+} t_map;
+
+typedef struct s_data
+{
+  void  *init;
+  void  *win;
+  t_map *map;
 } t_data;
+
+/* draw_map.c */
+void  draw_map(t_data *data);
 
 #endif
