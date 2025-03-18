@@ -17,6 +17,12 @@ t_data	*init_structs(void)
 	data->init = mlx_init();
 	data->win = mlx_new_window(data->init, 1280, 720, "TEST GAME");
 	data->map = ft_calloc(1, sizeof(t_map));
+	data->map->x = 1;
+	data->map->y = 1;
+	data->map->x_low = 10;
+	data->map->y_low = 10;
+	data->map->x_high = 1270;
+	data->map->y_high = 710;
 	return (data);
 }
 
