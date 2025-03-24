@@ -1,5 +1,4 @@
-NAME = cub3d
-#BONUS_NAME = so_long_bonus
+NAME = 3dsage
 
 SRC_DIR = ./src
 INC_DIR = ./inc
@@ -8,8 +7,9 @@ LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 MLX_FLAGS = -lmlx -lXext -lX11
 
-SRC_FILES = $(SRC_DIR)/cub3d.c \
-			$(SRC_DIR)/draw_map.c \
+SRC_FILES = $(SRC_DIR)/3dsage.c \
+			$(SRC_DIR)/error_exit.c \
+			$(SRC_DIR)/set_color.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
@@ -28,29 +28,21 @@ $(LIBFT):
 	@echo "Libft: Compiling"
 	@make -s all -C $(LIBFT_DIR)
 
-bonus: $(BONUS_NAME)
-
-$(BONUS_NAME): $(LIBFT) $(BONUS_OBJ_FILES)
-	@echo "so_long bonus: Linking"
-	@$(CC) $(BONUS_OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(BONUS_NAME)
-	@mv so_long_bonus so_long
-	@echo "so_long bonus: Ready"
-
 .c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@make -s clean -C $(LIBFT_DIR)
-	@$(REMOVE) $(OBJ_FILES) $(BONUS_OBJ_FILES)
+	@$(REMOVE) $(OBJ_FILES)
 	@echo "so_long: Object Files Removed"
 
 fclean:
 	@make -s fclean -C $(LIBFT_DIR)
-	@$(REMOVE) $(OBJ_FILES) $(BONUS_OBJ_FILES)
+	@$(REMOVE) $(OBJ_FILES)
 	@echo "so_long: Object Files Removed"
 	@$(REMOVE) $(NAME)
 	@echo "so_long: Executable Removed"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re

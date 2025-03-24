@@ -15,13 +15,13 @@
 
 #include "../libft/functions/get_next_line/get_next_line.h"
 #include "../libft/libft.h"
-#include "./minilibx/mlx.h"
 #include <X11/X.h>
 #include <X11/keysym.h>
 #include <fcntl.h>
 #include <stdbool.h>
 #include <stdio.h>
 #include <stdlib.h>
+#include <mlx.h>
 
 #define W 119
 #define A 97
