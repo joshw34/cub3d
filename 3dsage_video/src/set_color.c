@@ -5,7 +5,7 @@ static	void	set_player(t_data *data, int x, int y)
 	char	*addr;
 	int		*pixel;
 
-	addr = mlx_get_data_addr(data->init, &data->bpp, &data->line_length, &data->endian);
+	addr = mlx_get_data_addr(data->player, &data->bpp, &data->line_length, &data->endian);
 	while (y < 10)
 	{
 		while (x < 10)
