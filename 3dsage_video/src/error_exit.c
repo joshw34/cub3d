@@ -1,7 +1,29 @@
 # include "../inc/3dsage.h"
 
+void	free_array(char **array)
+{
+	int	i;
+
+	i = 0;
+	while (array[i])
+	{
+		free(array[i]);
+		i++;
+	}
+	free(array);
+}
+
+static	void	free_map(t_data *data)
+{
+	if (data->map->map)
+		free_array(data->map->map);
+	free(data->map);
+}
+
 static	void	free_data(t_data *data)
 {
+	if (data->map)
+		free_map(data);
 	if (data->player)
 		mlx_destroy_image(data->init, data->player);
 	if (data->bg)

@@ -8,6 +8,7 @@ LIBFT = $(LIBFT_DIR)/libft.a
 MLX_FLAGS = -lmlx -lXext -lX11
 
 SRC_FILES = $(SRC_DIR)/3dsage.c \
+			$(SRC_DIR)/parse_map.c \
 			$(SRC_DIR)/error_exit.c \
 			$(SRC_DIR)/set_color.c \
 			$(SRC_DIR)/run_game.c \

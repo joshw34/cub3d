@@ -1,4 +1,10 @@
 #include "../inc/3dsage.h"
+#include "X11/X.h"
+
+/*static	void	check_wall(int keysym, t_data *data)
+{
+
+}*/
 
 static	bool	check_move(int keysym, t_data *data)
 {
@@ -19,7 +25,7 @@ static	bool	check_move(int keysym, t_data *data)
 	if (keysym == D || keysym == RT)
 		return (data->p_x = (MAPX - 10), true);
 	else
-		return (ft_putstr_fd("wrong keysym\n", 2), false);
+		return (false);
 }
 
 int	key(int keysym, t_data *data)

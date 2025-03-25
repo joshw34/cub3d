@@ -5,6 +5,7 @@
 # include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
@@ -24,11 +25,21 @@
 # define MAPY 512
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
+# define ERROR_2 "Calloc Error: Map Struct\n"
+
+typedef	struct	s_map
+{
+	char	**map;
+	int		fd;
+	int		lines;
+	int		len;
+} t_map;
 
 typedef struct	s_data
 {
 	void	*init;
 	void	*win;
+	t_map	*map;	
 	void    *bg;
 	void	*player;
     int     bpp;
@@ -37,6 +48,9 @@ typedef struct	s_data
 	int		p_x;
     int		p_y;
 } t_data;
+
+/* parse_map.c */
+void	parse_map(t_data *data, char *map);
 
 /* error_exit.c */
 void	exit_game(t_data *data, bool error, char *msg);
