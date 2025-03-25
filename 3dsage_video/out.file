@@ -1,0 +1,1 @@
+CFLAGS = -Wall -Werror -Wextra -Wno-unused-result -I$(INC_DIR) -I$(LIBFT_DIR)

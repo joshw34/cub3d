@@ -10,6 +10,19 @@
 # include <unistd.h>
 # include <stdbool.h>
 
+# define W 119
+# define A 97
+# define S 115
+# define D 100
+
+# define UP 65362
+# define LT 65361
+# define DN 65364
+# define RT 65363
+
+# define MAPX 1024 
+# define MAPY 512
+
 # define ERROR_1 "Calloc Error: Data Struct\n"
 
 typedef struct	s_data
@@ -21,6 +34,8 @@ typedef struct	s_data
     int     bpp;
     int     line_length;
     int     endian;
+	int		p_x;
+    int		p_y;
 } t_data;
 
 /* error_exit.c */

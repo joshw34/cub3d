@@ -25,12 +25,12 @@ static	void	set_background(t_data *data, int x, int y)
 	char	*addr;
 
 	addr = mlx_get_data_addr(data->bg, &data->bpp, &data->line_length, &data->endian);
-	while (y < 512)
+	while (y < MAPY)
 	{
-		while (x < 1024)
+		while (x < MAPX)
 		{
 			pixel = (int *)(addr + (y * data->line_length + x * (data->bpp / 8)));
-			if (y < 256)
+			if (y < (MAPY / 2))
 				*pixel = 0x042f66;
 			else
 				*pixel = 0x21961b;

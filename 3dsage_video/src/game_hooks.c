@@ -1,13 +1,38 @@
 #include "../inc/3dsage.h"
 
+static	bool	check_move(int keysym, t_data *data)
+{
+	if ((keysym == W || keysym == UP) && (data->p_y - 10) >= 0) 
+		return (data->p_y -= 10, true);
+	if (keysym == W || keysym == UP)
+		return (data->p_y = 0, true);
+	if ((keysym == S || keysym == DN) && (data->p_y + 20) <= MAPY)
+		return (data->p_y += 10, true);
+	if (keysym == S || keysym == DN) 
+		return (data->p_y = (MAPY - 10), true);
+	if ((keysym == A || keysym == LT) && (data->p_x - 10) >= 0)
+		return (data->p_x -= 10, true);
+	if (keysym == A || keysym == LT)
+		return (data->p_x = 0, true);
+	if ((keysym == D || keysym == RT) && (data->p_x + 20) <= MAPX)
+		return (data->p_x += 10, true);
+	if (keysym == D || keysym == RT)
+		return (data->p_x = (MAPX - 10), true);
+	else
+		return (ft_putstr_fd("wrong keysym\n", 2), false);
+}
+
 int	key(int keysym, t_data *data)
 {
-
+	if (check_move(keysym, data) == true)
+		init_map(data);
+	return (0);
 }
 
 int	expose_win(t_data *data)
 {
 	init_map(data);
+	return (0);
 }
 
 int	win_close(t_data *data)

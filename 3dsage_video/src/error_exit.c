@@ -1,6 +1,4 @@
 # include "../inc/3dsage.h"
-#include "mlx.h"
-#include "unistd.h"
 
 static	void	free_data(t_data *data)
 {
