@@ -18,8 +18,8 @@ t_data	*init_data_struct(char	*map_file)
 	if (!data)
 		exit_game(data, true, ERROR_1);
 	data->init = mlx_init();
-	data->win = mlx_new_window(data->init, MAPX, MAPY, "3dsage Test");
-	data->bg = mlx_new_image(data->init, MAPX, MAPY);
+	//data->win = mlx_new_window(data->init, MAPX, MAPY, "3dsage Test");
+	//data->bg = mlx_new_image(data->init, MAPX, MAPY);
 	data->player = mlx_new_image(data->init, 10, 10);
 	data->p_x = 95;
 	data->p_y = 95;
@@ -36,6 +36,6 @@ int	main(int ac, char **av)
 	data = init_data_struct(av[1]);
 	parse_map(data);
 	set_image_data(data);
-	run_game(data);
+	//run_game(data);
 	exit_game(data, false, NULL);
 }

@@ -1,5 +1,15 @@
 #include "../inc/test.h"
 
+int	rgb_color_conversion(int r, int g, int b)
+{
+	int a;
+	int color;
+
+	a = 255;
+	color = (a << 24) | (r << 16) | (g << 8) | b;
+	return (color);
+}
+
 bool	open_mapfile(t_map *map)
 {
 	map->fd = open(map->map_file, O_RDONLY);

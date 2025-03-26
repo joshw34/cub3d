@@ -1,5 +1,8 @@
 #include "../inc/test.h"
 
+/*static	void	set_map(t_data *data, int *bits_per_pixel, int *size_line, int *endian)
+}*/
+
 static	void	set_player(t_data *data, int x, int y)
 {
 	char	*addr;
@@ -20,7 +23,7 @@ static	void	set_player(t_data *data, int x, int y)
 	}
 }
 
-static	void	set_background(t_data *data, int x, int y)
+static	void	set_background(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
 	char	*addr;
@@ -32,10 +35,7 @@ static	void	set_background(t_data *data, int x, int y)
 		while (x < MAPX)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			if (y < (MAPY / 2))
-				*pixel = 0x042f66;
-			else
-				*pixel = 0x21961b;
+			*pixel = color;
 			x++;
 		}
 		x = 0;
@@ -45,11 +45,9 @@ static	void	set_background(t_data *data, int x, int y)
 
 void	set_image_data(t_data *data)
 {
-	int	x;
-	int	y;
-
-	x = 0;
-	y = 0;
-	set_background(data, x, y);
-	set_player(data, x, y);
+	(void)data;
+	set_player(data, 0, 0);
+	set_background(data, 0, 0, WHITE);
+	printf("%x", rgb_color_conversion(255, 255, 255));
+	//set_map(data->map, x, y, WHITE);
 }

@@ -24,6 +24,9 @@
 # define MAPX 1024 
 # define MAPY 512
 
+# define BLACK 0x000000
+# define WHITE 0xffffff
+
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"
 # define ERROR_3 "Couldn't open mapfile\n"
@@ -32,11 +35,14 @@
 
 typedef struct s_map
 {
+	void	*mapimg;
 	char	**map;
 	char	*map_file;
 	int		fd;
 	int		lines;
 	int		len;
+	int		size_x;
+	int		size_y;
 }	t_map;
 
 typedef struct s_data
@@ -72,6 +78,7 @@ int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
 /* utils.c */
+int		rgb_color_conversion(int r, int g, int b);
 bool	open_mapfile(t_map *map);
 int		ft_strlen_no_nl(const char *str);
 
