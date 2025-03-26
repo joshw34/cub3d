@@ -1,0 +1,53 @@
+#include "../inc/test.h"
+
+void	init_mlx(t_data *data)
+{
+	data->init = mlx_init();
+	data->win = mlx_new_window(data->init, data->map->size_x, data->map->size_y, "Test");
+	data->bg = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
+	data->map->m_img = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
+	data->player->p_img = mlx_new_image(data->init, 10, 10);
+}
+
+void	init_player_struct(t_data *data)
+{
+	data->player = ft_calloc(1, sizeof(t_player));
+	data->player->p_x = 95;
+	data->player->p_y = 95;
+}
+
+void	init_map_struct(t_data *data, char *map_file)
+{
+	data->map = ft_calloc(1, sizeof(t_map));
+	if (!data->map)
+		exit_game(data, true, ERROR_2);
+	data->map->map_file = map_file;
+	data->map->lines = 0;
+	data->map->len = -1;
+}
+
+t_data	*init_structs(char	*map_file)
+{
+	t_data	*data;
+
+	data = ft_calloc(1, sizeof(t_data));
+	if (!data)
+		exit_game(data, true, ERROR_1);
+	init_map_struct(data, map_file);
+	init_player_struct(data);
+	return (data);
+}
+
+int	main(int ac, char **av)
+{
+	t_data	*data;
+
+	if (ac != 2)
+		exit(EXIT_FAILURE);
+	data = init_structs(av[1]);
+	parse_map(data);
+	init_mlx(data);
+	set_image_data(data);
+	run_game(data);
+	exit_game(data, false, NULL);
+}

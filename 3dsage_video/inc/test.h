@@ -2,7 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-# include "/home/jwhitley/.local/mlx/mlx.h" 
+//# include "/home/jwhitley/.local/mlx/mlx.h" 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -33,9 +34,16 @@
 # define ERROR_4 "Calloc Error: Map Array\n"
 # define ERROR_5 "Strdup Error: Map Array\n"
 
+typedef struct s_player
+{
+	void	*p_img;
+	int		p_x;
+	int		p_y;
+}	t_player;
+
 typedef struct s_map
 {
-	void	*mapimg;
+	void	*m_img;
 	char	**map;
 	char	*map_file;
 	int		fd;
@@ -47,16 +55,14 @@ typedef struct s_map
 
 typedef struct s_data
 {
-	void	*init;
-	void	*win;
-	t_map	*map;	
-	void	*bg;
-	void	*player;
-	int		bpp;
-	int		ln_len;
-	int		endian;
-	int		p_x;
-	int		p_y;
+	void		*init;
+	void		*win;
+	t_map		*map;
+	t_player	*player;
+	void		*bg;
+	int			bpp;
+	int			ln_len;
+	int			endian;
 }	t_data;
 
 /* parse_map.c */

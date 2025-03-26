@@ -8,7 +8,7 @@ static	void	set_player(t_data *data, int x, int y)
 	char	*addr;
 	int		*pixel;
 
-	addr = mlx_get_data_addr(data->player, &data->bpp, &data->ln_len,
+	addr = mlx_get_data_addr(data->player->p_img, &data->bpp, &data->ln_len,
 			&data->endian);
 	while (y < 10)
 	{
@@ -45,9 +45,7 @@ static	void	set_background(t_data *data, int x, int y, int color)
 
 void	set_image_data(t_data *data)
 {
-	(void)data;
 	set_player(data, 0, 0);
 	set_background(data, 0, 0, WHITE);
-	printf("%x", rgb_color_conversion(255, 255, 255));
 	//set_map(data->map, x, y, WHITE);
 }

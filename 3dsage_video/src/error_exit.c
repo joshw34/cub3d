@@ -13,10 +13,19 @@ void	free_array(char **array)
 	free(array);
 }
 
+static	void	free_player(t_data *data)
+{
+	if (data->player->p_img)
+		mlx_destroy_image(data->init, data->player->p_img);
+	free(data->player);
+}
+
 static	void	free_map(t_data *data)
 {
 	if (data->map->map)
 		free_array(data->map->map);
+	if (data->map->m_img)
+		mlx_destroy_image(data->init, data->map->m_img);
 	free(data->map);
 }
 
@@ -25,7 +34,7 @@ static	void	free_data(t_data *data)
 	if (data->map)
 		free_map(data);
 	if (data->player)
-		mlx_destroy_image(data->init, data->player);
+		free_player(data);	
 	if (data->bg)
 		mlx_destroy_image(data->init, data->bg);
 	if (data->win)

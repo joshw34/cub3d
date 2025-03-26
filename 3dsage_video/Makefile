@@ -3,13 +3,11 @@ NAME = test
 SRC_DIR = ./src
 INC_DIR = ./inc
 LIBFT_DIR = ./libft
-MLX_DIR = /home/jwhitley/.local/mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBMLX = $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -lXext -lX11
+MLX_FLAGS = -lmlx -lXext -lX11
 
-SRC_FILES = $(SRC_DIR)/3dsage.c \
+SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/parse_map.c \
 			$(SRC_DIR)/error_exit.c \
 			$(SRC_DIR)/image_buffers.c \
@@ -28,7 +26,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@echo "$(NAME): Linking"
-	@$(CC) $(OBJ_FILES) $(LIBFT) $(LIBMLX) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 	@echo "$(NAME): Ready"
 
 $(LIBFT):
