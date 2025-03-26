@@ -1,4 +1,4 @@
-NAME = 3dsage
+NAME = test 
 
 SRC_DIR = ./src
 INC_DIR = ./inc
@@ -16,6 +16,7 @@ SRC_FILES = $(SRC_DIR)/3dsage.c \
 			$(SRC_DIR)/run_game.c \
 			$(SRC_DIR)/game_hooks.c \
 			$(SRC_DIR)/utils.c \
+			$(SRC_DIR)/debug_funcs.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

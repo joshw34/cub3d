@@ -1,5 +1,5 @@
-#ifndef SAGE_H
-#define SAGE_H
+#ifndef TEST_H
+# define TEST_H
 
 # include "../libft/libft.h"
 # include "/home/jwhitley/.local/mlx/mlx.h" 
@@ -30,28 +30,28 @@
 # define ERROR_4 "Calloc Error: Map Array\n"
 # define ERROR_5 "Strdup Error: Map Array\n"
 
-typedef	struct	s_map
+typedef struct s_map
 {
 	char	**map;
 	char	*map_file;
 	int		fd;
 	int		lines;
 	int		len;
-} t_map;
+}	t_map;
 
-typedef struct	s_data
+typedef struct s_data
 {
 	void	*init;
 	void	*win;
 	t_map	*map;	
-	void    *bg;
+	void	*bg;
 	void	*player;
-    int     bpp;
-    int     line_length;
-    int     endian;
+	int		bpp;
+	int		ln_len;
+	int		endian;
 	int		p_x;
-    int		p_y;
-} t_data;
+	int		p_y;
+}	t_data;
 
 /* parse_map.c */
 void	parse_map(t_data *data);
@@ -67,12 +67,15 @@ void	init_map(t_data *data);
 void	run_game(t_data *data);
 
 /* game_hooks.c */
-int	key(int keysym, t_data *data);
-int	expose_win(t_data *data);
-int	win_close(t_data *data);
+int		key(int keysym, t_data *data);
+int		expose_win(t_data *data);
+int		win_close(t_data *data);
 
 /* utils.c */
 bool	open_mapfile(t_map *map);
-int	ft_strlen_no_nl(const char *str);
+int		ft_strlen_no_nl(const char *str);
+
+/* debug_funcs.c */
+void	db_print_map_info(t_data *data, bool add_spaces);
 
 #endif

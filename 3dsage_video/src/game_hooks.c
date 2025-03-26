@@ -1,4 +1,4 @@
-#include "../inc/3dsage.h"
+#include "../inc/test.h"
 
 /*static	void	check_wall(int keysym, t_data *data)
 {
@@ -7,13 +7,13 @@
 
 static	bool	check_move(int keysym, t_data *data)
 {
-	if ((keysym == W || keysym == UP) && (data->p_y - 10) >= 0) 
+	if ((keysym == W || keysym == UP) && (data->p_y - 10) >= 0)
 		return (data->p_y -= 10, true);
 	if (keysym == W || keysym == UP)
 		return (data->p_y = 0, true);
 	if ((keysym == S || keysym == DN) && (data->p_y + 20) <= MAPY)
 		return (data->p_y += 10, true);
-	if (keysym == S || keysym == DN) 
+	if (keysym == S || keysym == DN)
 		return (data->p_y = (MAPY - 10), true);
 	if ((keysym == A || keysym == LT) && (data->p_x - 10) >= 0)
 		return (data->p_x -= 10, true);

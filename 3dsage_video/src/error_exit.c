@@ -1,4 +1,4 @@
-# include "../inc/3dsage.h"
+#include "../inc/test.h"
 
 void	free_array(char **array)
 {
@@ -41,7 +41,7 @@ static	void	free_data(t_data *data)
 void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)
-		free_data(data);	
+		free_data(data);
 	if (error == true)
 	{
 		ft_putstr_fd("Error: ", STDERR_FILENO);

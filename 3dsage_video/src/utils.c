@@ -1,4 +1,4 @@
-# include "../inc/3dsage.h"
+#include "../inc/test.h"
 
 bool	open_mapfile(t_map *map)
 {

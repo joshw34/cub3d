@@ -1,4 +1,4 @@
-#include "../inc/3dsage.h"
+#include "../inc/test.h"
 
 void	init_map_struct(t_data *data, char *map_file)
 {
@@ -29,9 +29,11 @@ t_data	*init_data_struct(char	*map_file)
 
 int	main(int ac, char **av)
 {
+	t_data	*data;
+
 	if (ac != 2)
 		exit(EXIT_FAILURE);
-	t_data	*data = init_data_struct(av[1]);
+	data = init_data_struct(av[1]);
 	parse_map(data);
 	set_image_data(data);
 	run_game(data);

@@ -1,9 +1,10 @@
-#include "../inc/3dsage.h"
+#include "../inc/test.h"
 
 void	init_map(t_data *data)
 {
 	mlx_put_image_to_window(data->init, data->win, data->bg, 0, 0);
-	mlx_put_image_to_window(data->init, data->win, data->player, data->p_x, data->p_y);
+	mlx_put_image_to_window(data->init, data->win, data->player, data->p_x,
+		data->p_y);
 }
 
 void	run_game(t_data *data)

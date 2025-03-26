@@ -1,10 +1,25 @@
-#include "../inc/3dsage.h"
+#include "../inc/test.h"
+
+static	void	remove_map_nl(t_map *map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (map->map[i])
+	{
+		len = ft_strlen(map->map[i]);
+		if (map->map[i][len - 1] == '\n')
+			map->map[i][len -1] = '\0';
+		i++;
+	}
+}
 
 static	bool	get_map_array(t_map *map)
 {
 	int		i;
 	char	*line;
-	
+
 	i = 0;
 	line = get_next_line(map->fd);
 	while (line)
@@ -19,6 +34,7 @@ static	bool	get_map_array(t_map *map)
 	map->map[i] = NULL;
 	if (line)
 		free(line);
+	remove_map_nl(map);
 	return (true);
 }
 
@@ -63,5 +79,6 @@ void	parse_map(t_data *data)
 		exit_game(data, true, ERROR_3);
 	if (get_map_array(data->map) == false)
 		exit_game(data, true, ERROR_5);
-	ft_printf("Lines = %d\nLen = %d\n", data->map->lines, data->map->len);
+	db_print_map_info(data, true);
+	db_print_map_info(data, false);
 }
