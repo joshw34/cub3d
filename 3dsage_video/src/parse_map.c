@@ -1,28 +1,67 @@
 #include "../inc/3dsage.h"
-#include "fcntl.h"
 
-void	get_line_data(t_map *map, char *map_file)
+static	bool	get_map_array(t_map *map)
+{
+	int		i;
+	char	*line;
+	
+	i = 0;
+	line = get_next_line(map->fd);
+	while (line)
+	{
+		map->map[i] = ft_strdup(line);
+		if (!map->map[i])
+			return (false);
+		free(line);
+		line = get_next_line(map->fd);
+		i++;
+	}
+	map->map[i] = NULL;
+	if (line)
+		free(line);
+	return (true);
+}
+
+static	bool	allocate_map_array(t_map *map)
+{
+	map->map = ft_calloc(map->lines + 1, sizeof(char *));
+	if (!map->map)
+		return (false);
+	return (true);
+}
+
+static	bool	get_line_data(t_map *map)
 {
 	char	*line;
+	int		line_len;
 
-	map->fd = open(map_file, O_RDONLY);
-	map->lines = 0;
-	map->len = -1;
+	if (open_mapfile(map) == false)
+		return (false);
 	line = get_next_line(map->fd);
 	while (line)
 	{
 		map->lines++;
-		if ((int)ft_strlen(line) > map->len)
-			map->len = (int)ft_strlen(line);
+		line_len = ft_strlen_no_nl(line);
+		if (line_len > map->len)
+			map->len = line_len;
 		free(line);
 		line = get_next_line(map->fd);
 	}
 	if (line)
 		free(line);
+	close(map->fd);
+	return (true);
 }
 
-void	parse_map(t_data *data, char *map_file)
+void	parse_map(t_data *data)
 {
-	get_line_data(data->map, map_file);
+	if (get_line_data(data->map) == false)
+		exit_game(data, true, ERROR_3);
+	if (allocate_map_array(data->map) == false)
+		exit_game(data, true, ERROR_4);
+	if (open_mapfile(data->map) == false)
+		exit_game(data, true, ERROR_3);
+	if (get_map_array(data->map) == false)
+		exit_game(data, true, ERROR_5);
 	ft_printf("Lines = %d\nLen = %d\n", data->map->lines, data->map->len);
 }

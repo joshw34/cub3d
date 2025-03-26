@@ -2,7 +2,7 @@
 #define SAGE_H
 
 # include "../libft/libft.h"
-# include <mlx.h>
+# include "/home/jwhitley/.local/mlx/mlx.h" 
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -26,10 +26,14 @@
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"
+# define ERROR_3 "Couldn't open mapfile\n"
+# define ERROR_4 "Calloc Error: Map Array\n"
+# define ERROR_5 "Strdup Error: Map Array\n"
 
 typedef	struct	s_map
 {
 	char	**map;
+	char	*map_file;
 	int		fd;
 	int		lines;
 	int		len;
@@ -50,7 +54,7 @@ typedef struct	s_data
 } t_data;
 
 /* parse_map.c */
-void	parse_map(t_data *data, char *map);
+void	parse_map(t_data *data);
 
 /* error_exit.c */
 void	exit_game(t_data *data, bool error, char *msg);
@@ -66,5 +70,9 @@ void	run_game(t_data *data);
 int	key(int keysym, t_data *data);
 int	expose_win(t_data *data);
 int	win_close(t_data *data);
+
+/* utils.c */
+bool	open_mapfile(t_map *map);
+int	ft_strlen_no_nl(const char *str);
 
 #endif

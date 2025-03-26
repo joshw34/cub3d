@@ -1,5 +1,4 @@
 #include "../inc/3dsage.h"
-#include "X11/X.h"
 
 /*static	void	check_wall(int keysym, t_data *data)
 {

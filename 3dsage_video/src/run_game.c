@@ -1,5 +1,4 @@
 #include "../inc/3dsage.h"
-#include "mlx.h"
 
 void	init_map(t_data *data)
 {
