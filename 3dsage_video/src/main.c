@@ -1,5 +1,12 @@
 #include "../inc/test.h"
 
+void	init_texture_struct(t_data *data)
+{
+	data->textures = ft_calloc(1, sizeof(t_textures));
+	if (!data->textures)
+		exit_game(data, true, ERROR_6);
+}
+
 void	init_player_struct(t_data *data)
 {
 	data->player = ft_calloc(1, sizeof(t_player));
@@ -26,6 +33,7 @@ t_data	*init_structs(char	*map_file)
 		exit_game(data, true, ERROR_1);
 	init_map_struct(data, map_file);
 	init_player_struct(data);
+	init_texture_struct(data);
 	return (data);
 }
 

@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-# include "/home/jwhitley/.local/mlx/mlx.h" 
-//# include <mlx.h>
+//# include "/home/jwhitley/.local/mlx/mlx.h" 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -33,6 +33,17 @@
 # define ERROR_3 "Couldn't open mapfile\n"
 # define ERROR_4 "Calloc Error: Map Array\n"
 # define ERROR_5 "Strdup Error: Map Array\n"
+# define ERROR_6 "Calloc Error: Texture Struct\n"
+
+typedef struct s_textures
+{
+	char	*NO;
+	char	*SO;
+	char	*WE;
+	char	*EA;
+	int		floor;
+	int		ceiling;
+}	t_textures;
 
 typedef struct s_player
 {
@@ -59,6 +70,7 @@ typedef struct s_data
 	void		*win;
 	t_map		*map;
 	t_player	*player;
+	t_textures	*textures;
 	void		*bg;
 	int			bpp;
 	int			ln_len;
@@ -67,6 +79,11 @@ typedef struct s_data
 
 /* parse_map.c */
 void	parse_map(t_data *data);
+
+/* parsing_utils.c */
+int		rgb_color_conversion(int r, int g, int b);
+bool	open_mapfile(t_map *map);
+int		ft_strlen_no_nl(const char *str);
 
 /* error_exit.c */
 void	exit_game(t_data *data, bool error, char *msg);
@@ -82,11 +99,6 @@ void	run_game(t_data *data);
 int		key(int keysym, t_data *data);
 int		expose_win(t_data *data);
 int		win_close(t_data *data);
-
-/* utils.c */
-int		rgb_color_conversion(int r, int g, int b);
-bool	open_mapfile(t_map *map);
-int		ft_strlen_no_nl(const char *str);
 
 /* debug_funcs.c */
 void	db_err_print(char *str);
