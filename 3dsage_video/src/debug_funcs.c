@@ -1,5 +1,11 @@
 #include "../inc/test.h"
 
+void	db_err_print(char *str)
+{
+	ft_putstr_fd(str, 2);
+	ft_putchar_fd('\n', 2);
+}
+
 static	void	db_print_top_btm(int n, bool add_spaces)
 {
 	if (add_spaces == true)

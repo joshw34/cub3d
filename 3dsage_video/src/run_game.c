@@ -3,6 +3,7 @@
 void	init_map(t_data *data)
 {
 	mlx_put_image_to_window(data->init, data->win, data->bg, 0, 0);
+	mlx_put_image_to_window(data->init, data->win, data->map->m_img, 0, 0);
 	mlx_put_image_to_window(data->init, data->win, data->player->p_img, data->player->p_x, data->player->p_y);
 }
 

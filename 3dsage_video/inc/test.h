@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-//# include "/home/jwhitley/.local/mlx/mlx.h" 
-# include <mlx.h>
+# include "/home/jwhitley/.local/mlx/mlx.h" 
+//# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -89,6 +89,7 @@ bool	open_mapfile(t_map *map);
 int		ft_strlen_no_nl(const char *str);
 
 /* debug_funcs.c */
+void	db_err_print(char *str);
 void	db_print_map_info(t_data *data, bool add_spaces);
 
 #endif

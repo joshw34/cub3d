@@ -1,5 +1,4 @@
 NAME = cub3d
-#BONUS_NAME = so_long_bonus
 
 SRC_DIR = ./src
 INC_DIR = ./inc
