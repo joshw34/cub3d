@@ -27,6 +27,8 @@
 
 # define BLACK 0x000000
 # define WHITE 0xffffff
+# define GREEN 0x008000
+# define RED 0xb92537
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"

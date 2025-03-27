@@ -41,6 +41,8 @@ static	void	set_map(t_data *data)
 		{
 			if (map[i][j] == '0')
 				set_map2(data, j * 32, i * 32, WHITE);
+			else if (map[i][j] == '1')
+				set_map2(data, j * 32, i * 32, GREEN);
 			j++;
 		}
 		i++;
@@ -59,7 +61,7 @@ static	void	set_player(t_data *data, int x, int y)
 		while (x < 10)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = 0xb92537;
+			*pixel = RED;
 			x++;
 		}
 		x = 0;
