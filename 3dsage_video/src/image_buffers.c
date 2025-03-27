@@ -67,10 +67,11 @@ static	void	set_player(t_data *data, int x, int y)
 	}
 }
 
-static	void	set_background(t_data *data, int x, int y, int color)
+/*static	void	set_background(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
 	char	*addr;
+	(void)color;
 
 	addr = mlx_get_data_addr(data->bg, &data->bpp, &data->ln_len,
 			&data->endian);
@@ -79,21 +80,20 @@ static	void	set_background(t_data *data, int x, int y, int color)
 		while (x < data->map->size_x)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = color;
+			*pixel = rgb_color_conversion(0, 0, 0);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-}
+}*/
 
 void	set_image_data(t_data *data)
 {
+	//set_background(data, 0, 0, BLACK);
+	//db_err_print("BG set");
 	set_player(data, 0, 0);
 	db_err_print("Player set");
-	set_background(data, 0, 0, BLACK);
-	db_err_print("BG set");
 	set_map(data);
 	db_err_print("Map set");
-	//set_map(data->map, x, y, WHITE);
 }

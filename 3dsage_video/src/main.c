@@ -1,14 +1,5 @@
 #include "../inc/test.h"
 
-void	init_mlx(t_data *data)
-{
-	data->init = mlx_init();
-	data->win = mlx_new_window(data->init, data->map->size_x, data->map->size_y, "Test");
-	data->bg = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
-	data->map->m_img = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
-	data->player->p_img = mlx_new_image(data->init, 10, 10);
-}
-
 void	init_player_struct(t_data *data)
 {
 	data->player = ft_calloc(1, sizeof(t_player));
@@ -46,8 +37,6 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	data = init_structs(av[1]);
 	parse_map(data);
-	init_mlx(data);
-	set_image_data(data);
 	run_game(data);
 	exit_game(data, false, NULL);
 }
