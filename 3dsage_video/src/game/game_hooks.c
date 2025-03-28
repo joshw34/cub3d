@@ -1,5 +1,6 @@
 #include "../../inc/test.h"
 
+/* Radians = 0 -> 2PI. Reset angle to 2PI when reaching zero as negative is invalid*/
 static	void	look(int key, t_player *play)
 {
 	if (key == LT)
@@ -22,25 +23,25 @@ static	void	look(int key, t_player *play)
 
 static	void	move(int key, t_player *play)
 {
-	if (key == W)  // Forward
+	if (key == W)
 	{
 		play->p_x += play->p_dx;
 	    play->p_y += play->p_dy;
 	}
-	else if (key == S)  // Backward
+	else if (key == S)
 	{	
 		play->p_x -= play->p_dx;
 	    play->p_y -= play->p_dy;
 	}
-	else if (key == A)  // Left (strafe)
+	else if (key == A)
 	{
 		play->p_x -= play->p_dy;
-	    play->p_y -= play->p_dx;  // Fixed: MINUS for Y-down systems
+	    play->p_y -= play->p_dx;
 	}
-	else if (key == D)  // Right (strafe)
+	else if (key == D)
 	{
 		play->p_x += play->p_dy;
-	    play->p_y += play->p_dx;  // Fixed: PLUS for Y-down systems
+	    play->p_y += play->p_dx;
 	}
 }
 
