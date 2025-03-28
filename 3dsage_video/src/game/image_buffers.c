@@ -10,8 +10,8 @@ static	void	set_map2(t_data *data, int x, int y, int color)
 	int		start_x;
 	
 	start_x = x;
-	size_x = x + 32 - 1;
-	size_y = y + 32 - 1;
+	size_x = x + 60 - 1;
+	size_y = y + 60 - 1;
 	addr = mlx_get_data_addr(data->map->m_img, &data->bpp, &data->ln_len,
 			&data->endian);
 	while (y < size_y)
@@ -42,9 +42,9 @@ static	void	set_map(t_data *data)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0')
-				set_map2(data, j * 32, i * 32, WHITE);
+				set_map2(data, j * 60, i * 60, WHITE);
 			else if (map[i][j] == '1')
-				set_map2(data, j * 32, i * 32, GREEN);
+				set_map2(data, j * 60, i * 60, GREEN);
 			j++;
 		}
 		i++;

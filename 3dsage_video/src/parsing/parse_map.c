@@ -59,8 +59,8 @@ static	bool	get_line_data(t_map *map)
 	if (line)
 		free(line);
 	close(map->fd);
-	map->size_x = map->len * 32;
-	map->size_y = map->lines * 32;
+	map->size_x = map->len * 60;
+	map->size_y = map->lines * 60;
 	return (true);
 }
 
