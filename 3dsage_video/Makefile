@@ -30,7 +30,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@echo "$(NAME): Linking"
-	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -lm -o $(NAME)
 	@echo "$(NAME): Ready"
 
 $(LIBFT):

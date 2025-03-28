@@ -10,8 +10,8 @@ void	init_texture_struct(t_data *data)
 void	init_player_struct(t_data *data)
 {
 	data->player = ft_calloc(1, sizeof(t_player));
-	data->player->p_x = 95;
-	data->player->p_y = 95;
+	data->player->p_x = 100.0;
+	data->player->p_y = 100.0;
 }
 
 void	init_map_struct(t_data *data, char *map_file)
@@ -37,10 +37,10 @@ t_data	*init_structs(char	*map_file)
 	return (data);
 }
 
+/* Data split in to multiple structs to keep tidy, may need to reorganise later */
 int	main(int ac, char **av)
 {
 	t_data	*data;
-
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	data = init_structs(av[1]);

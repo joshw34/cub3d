@@ -1,5 +1,8 @@
 #include "../../inc/test.h"
 
+/* No error checking yet, only map is parsed, no textures/colors */
+
+/* Parse map using gnl, remove \n if present */
 static	bool	get_map_array(t_map *map)
 {
 	int		i;
@@ -26,6 +29,7 @@ static	bool	get_map_array(t_map *map)
 	return (true);
 }
 
+/* Allocate 2d array to hold map, return error if failed */
 static	bool	allocate_map_array(t_map *map)
 {
 	map->map = ft_calloc(map->lines + 1, sizeof(char *));
@@ -34,6 +38,7 @@ static	bool	allocate_map_array(t_map *map)
 	return (true);
 }
 
+/* Calculate number of lines and length of longest line, calculate size of minimap */
 static	bool	get_line_data(t_map *map)
 {
 	char	*line;
@@ -70,5 +75,4 @@ void	parse_map(t_data *data)
 	if (get_map_array(data->map) == false)
 		exit_game(data, true, ERROR_5);
 	db_print_map_info(data, true);
-	db_print_map_info(data, false);
 }

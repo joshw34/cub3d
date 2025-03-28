@@ -1,5 +1,6 @@
 #include "../../inc/test.h"
 
+/* Draw each tile. Currently set to 32x32 pixels*/
 static	void	set_map2(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
@@ -9,8 +10,8 @@ static	void	set_map2(t_data *data, int x, int y, int color)
 	int		start_x;
 	
 	start_x = x;
-	size_x = x + 32;
-	size_y = y + 32;
+	size_x = x + 32 - 1;
+	size_y = y + 32 - 1;
 	addr = mlx_get_data_addr(data->map->m_img, &data->bpp, &data->ln_len,
 			&data->endian);
 	while (y < size_y)
@@ -26,6 +27,7 @@ static	void	set_map2(t_data *data, int x, int y, int color)
 	}
 }
 
+/* Cycle through map array, send x + y pixel for top-left corner of each tile */
 static	void	set_map(t_data *data)
 {
 	char	**map;
@@ -69,7 +71,7 @@ static	void	set_player(t_data *data, int x, int y)
 	}
 }
 
-/*static	void	set_background(t_data *data, int x, int y, int color)
+static	void	set_background(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
 	char	*addr;
@@ -82,20 +84,18 @@ static	void	set_player(t_data *data, int x, int y)
 		while (x < data->map->size_x)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = rgb_color_conversion(0, 0, 0);
+			*pixel = rgb_color_conversion(data->init, 0, 0, 0);
 			x++;
 		}
 		x = 0;
 		y++;
 	}
-}*/
+}
 
+/* Set image buffer data for all images. Needs to be tidied up */
 void	set_image_data(t_data *data)
 {
-	//set_background(data, 0, 0, BLACK);
-	//db_err_print("BG set");
+	set_background(data, 0, 0, BLACK);
 	set_player(data, 0, 0);
-	db_err_print("Player set");
 	set_map(data);
-	db_err_print("Map set");
 }

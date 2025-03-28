@@ -11,6 +11,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdbool.h>
+# include <math.h>
 
 # define W 119
 # define A 97
@@ -29,6 +30,8 @@
 # define WHITE 0xffffff
 # define GREEN 0x008000
 # define RED 0xb92537
+
+# define PI M_PI 
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"
@@ -50,8 +53,11 @@ typedef struct s_textures
 typedef struct s_player
 {
 	void	*p_img;
-	int		p_x;
-	int		p_y;
+	float		p_x;
+	float		p_y;
+	float		p_dx;
+	float		p_dy;
+	float		p_ang;
 }	t_player;
 
 typedef struct s_map
@@ -83,7 +89,7 @@ typedef struct s_data
 void	parse_map(t_data *data);
 
 /* parsing_utils.c */
-int		rgb_color_conversion(int r, int g, int b);
+int		rgb_color_conversion(void *mlx, int r, int g, int b);
 bool	open_mapfile(t_map *map);
 int		ft_strlen_no_nl(const char *str);
 

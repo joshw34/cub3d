@@ -1,13 +1,14 @@
 #include "../../inc/test.h"
 
-int	rgb_color_conversion(int r, int g, int b)
+/* Will be used to convert rgb values from mapfile */
+int	rgb_color_conversion(void *mlx, int r, int g, int b)
 {
-	int a;
 	int color;
+	int	mlx_color;
 
-	a = 255;
-	color = (a << 24) | (r << 16) | (g << 8) | b;
-	return (color);
+	color = (r << 16) | (g << 8) | b;
+	mlx_color = mlx_get_color_value(mlx, color) ;
+	return (mlx_color);
 }
 
 bool	open_mapfile(t_map *map)
@@ -18,6 +19,7 @@ bool	open_mapfile(t_map *map)
 	return (true);
 }
 
+/* Calculate length of map lines, not counting \n which will be removed later */
 int	ft_strlen_no_nl(const char *str)
 {
 	int	i;

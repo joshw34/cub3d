@@ -1,5 +1,7 @@
 #include "../../inc/test.h"
+#include "mlx.h"
 
+/* Initialse all images then redraw in loop */
 void	init_map(t_data *data)
 {
 	//mlx_put_image_to_window(data->init, data->win, data->bg, 0, 0);
@@ -7,6 +9,7 @@ void	init_map(t_data *data)
 	mlx_put_image_to_window(data->init, data->win, data->player->p_img, data->player->p_x, data->player->p_y);
 }
 
+/* Create mlx, window and image pointers*/
 static void	init_mlx(t_data *data)
 {
 	data->init = mlx_init();
@@ -23,7 +26,6 @@ void	run_game(t_data *data)
 	init_map(data);
 	mlx_hook(data->win, DestroyNotify, 0, &win_close, data);
 	mlx_expose_hook(data->win, &expose_win, data);
-	mlx_do_key_autorepeaton(data->init);
 	mlx_key_hook(data->win, &key, data);
 	mlx_loop(data->init);
 }

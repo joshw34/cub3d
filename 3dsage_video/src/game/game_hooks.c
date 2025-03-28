@@ -1,41 +1,58 @@
 #include "../../inc/test.h"
 
-/*static	void	check_wall(int keysym, t_data *data)
+static	void	look(int key, t_player *play)
 {
+	if (key == LT)
+	{
+		play->p_ang -= 0.1;
+		if (play->p_ang < 0)
+			play->p_ang += (2 * PI);
+		play->p_dx = cos(play->p_ang) * 5;
+		play->p_dy = sin(play->p_ang) * 5;
+	}
+	else if (key == RT)
+	{
+		play->p_ang += 0.1;
+		if (play->p_ang > 2 * PI)
+			play->p_ang -= (2 * PI);
+		play->p_dx = cos(play->p_ang) * 5;
+		play->p_dy = sin(play->p_ang) * 5;
+	}
+}
 
-}*/
-
-static	bool	check_move(int keysym, t_data *data)
+static	void	move(int key, t_player *play)
 {
-	int	x_lim;
-	int	y_lim;
-
-	x_lim = data->map->size_x;
-	y_lim = data->map->size_y;
-	if ((keysym == W || keysym == UP) && (data->player->p_y - 10) >= 0)
-		return (data->player->p_y -= 10, true);
-	if (keysym == W || keysym == UP)
-		return (data->player->p_y = 0, true);
-	if ((keysym == S || keysym == DN) && (data->player->p_y + 20) <= y_lim)
-		return (data->player->p_y += 10, true);
-	if (keysym == S || keysym == DN)
-		return (data->player->p_y = (y_lim - 10), true);
-	if ((keysym == A || keysym == LT) && (data->player->p_x - 10) >= 0)
-		return (data->player->p_x -= 10, true);
-	if (keysym == A || keysym == LT)
-		return (data->player->p_x = 0, true);
-	if ((keysym == D || keysym == RT) && (data->player->p_x + 20) <= x_lim)
-		return (data->player->p_x += 10, true);
-	if (keysym == D || keysym == RT)
-		return (data->player->p_x = (x_lim - 10), true);
-	else
-		return (false);
+	if (key == W)  // Forward
+	{
+		play->p_x += play->p_dx;
+	    play->p_y += play->p_dy;
+	}
+	else if (key == S)  // Backward
+	{	
+		play->p_x -= play->p_dx;
+	    play->p_y -= play->p_dy;
+	}
+	else if (key == A)  // Left (strafe)
+	{
+		play->p_x -= play->p_dy;
+	    play->p_y -= play->p_dx;  // Fixed: MINUS for Y-down systems
+	}
+	else if (key == D)  // Right (strafe)
+	{
+		play->p_x += play->p_dy;
+	    play->p_y += play->p_dx;  // Fixed: PLUS for Y-down systems
+	}
 }
 
 int	key(int keysym, t_data *data)
 {
-	if (check_move(keysym, data) == true)
-		init_map(data);
+	if (keysym == LT || keysym == RT)
+		look(keysym, data->player);
+	if (keysym == W || keysym == A || keysym == S || keysym == D)
+		move(keysym, data->player);
+	else
+		return (-1);
+	init_map(data);
 	return (0);
 }
 

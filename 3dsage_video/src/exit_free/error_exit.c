@@ -56,6 +56,8 @@ static	void	free_data(t_data *data)
 	free(data);
 }
 
+/* Used for normal and error exits, free all data, if error = true, prints Error: before message to stderr,
+   prints msg to stdout if no error*/
 void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)
