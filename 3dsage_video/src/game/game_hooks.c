@@ -1,6 +1,7 @@
 #include "../../inc/test.h"
 
 /* Radians = 0 -> 2PI. Reset angle to 2PI when reaching zero as negative is invalid*/
+/* See pdx_pdy diagram */
 static	void	look(int key, t_player *play)
 {
 	if (key == LT)
@@ -21,6 +22,7 @@ static	void	look(int key, t_player *play)
 	}
 }
 
+/* See px_py_move diagram */
 static	void	move(int key, t_player *play)
 {
 	if (key == W)

@@ -10,6 +10,7 @@ void	init_map(t_data *data)
 }
 
 /* Create mlx, window and image pointers*/
+/* Player start angle set here for now */
 static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 {
 	data->init = mlx_init();
