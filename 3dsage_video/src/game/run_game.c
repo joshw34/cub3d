@@ -10,18 +10,21 @@ void	init_map(t_data *data)
 }
 
 /* Create mlx, window and image pointers*/
-static void	init_mlx(t_data *data)
+static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 {
 	data->init = mlx_init();
-	data->win = mlx_new_window(data->init, data->map->size_x, data->map->size_y, "Test");
-	data->bg = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
-	data->map->m_img = mlx_new_image(data->init, data->map->size_x, data->map->size_y);
+	data->win = mlx_new_window(data->init, map->size_x, map->size_y, "cub3d");
+	data->bg = mlx_new_image(data->init, map->size_x, map->size_y);
+	data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
 	data->player->p_img = mlx_new_image(data->init, 10, 10);
+	data->player->p_ang = PI;
+	data->player->p_dx = cos(player->p_ang) * 5;
+	data->player->p_dy = sin(player->p_ang) * 5;
 }
 
 void	run_game(t_data *data)
 {
-	init_mlx(data);
+	init_mlx_data(data, data->player, data->map);
 	set_image_data(data);
 	init_map(data);
 	mlx_hook(data->win, DestroyNotify, 0, &win_close, data);

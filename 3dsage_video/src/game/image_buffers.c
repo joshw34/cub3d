@@ -1,6 +1,6 @@
 #include "../../inc/test.h"
 
-/* Draw each tile. Currently set to 32x32 pixels*/
+/* Draw each tile. Currently set to 60x60 pixels*/
 static	void	set_map2(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
