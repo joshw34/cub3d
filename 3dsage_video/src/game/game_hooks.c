@@ -51,10 +51,11 @@ int	key(int keysym, t_data *data)
 {
 	if (keysym == LT || keysym == RT)
 		look(keysym, data->player);
-	if (keysym == W || keysym == A || keysym == S || keysym == D)
+	else if (keysym == W || keysym == A || keysym == S || keysym == D)
 		move(keysym, data->player);
 	else
 		return (-1);
+	db_print_player_coord(data->player);
 	init_map(data);
 	return (0);
 }

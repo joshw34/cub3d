@@ -1,5 +1,38 @@
 #include "../inc/test.h"
 
+void	db_draw_line(t_data *data, t_player *play)
+{
+	int		n_pixels;
+	double	pixel_x;
+	double	pixel_y;
+	double	delta_x;
+	double	delta_y;
+
+	delta_x = play->p_dx * 25;
+	delta_y = play->p_dy * 25;
+	n_pixels = sqrt((delta_x * delta_x) + delta_y * delta_y);
+	delta_x /= n_pixels;
+	delta_y /= n_pixels;
+	pixel_x = (double)play->p_x;
+	pixel_y = (double)play->p_y;
+	while (n_pixels)
+	{
+		mlx_pixel_put(data->init, data->win, pixel_x, pixel_y, RED);
+		pixel_x += delta_x;
+		pixel_y += delta_y;
+		n_pixels--;
+	}
+}
+
+void	db_print_player_coord(t_player *p)
+{
+	printf("\n");
+	printf("px = %f\tpy = %f\n", p->p_x, p->p_y);
+	printf("pdx = %f\tpdy = %f\n", p->p_dx, p->p_dy);
+	printf("p_ang = %f\n", p->p_ang);
+	printf("\n");
+}
+
 void	db_err_print(char *str)
 {
 	ft_putstr_fd(str, 2);

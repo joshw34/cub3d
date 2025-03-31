@@ -109,6 +109,8 @@ int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
 /* debug_funcs.c */
+void	db_draw_line(t_data *data, t_player *play);
+void	db_print_player_coord(t_player *p);
 void	db_err_print(char *str);
 void	db_print_map_info(t_data *data, bool add_spaces);
 
