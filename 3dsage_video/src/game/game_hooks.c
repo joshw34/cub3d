@@ -60,6 +60,7 @@ int	key(int keysym, t_data *data)
 	return (0);
 }
 
+/* This can probably be removed and init_map() called directly */
 int	expose_win(t_data *data)
 {
 	init_map(data);

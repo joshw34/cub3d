@@ -1,4 +1,5 @@
 #include "../../inc/test.h"
+#include <stdio.h>
 
 /* Initialse all images then redraw in loop */
 void	init_map(t_data *data)
@@ -18,9 +19,10 @@ static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 	data->bg = mlx_new_image(data->init, map->size_x, map->size_y);
 	data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
 	data->player->p_img = mlx_new_image(data->init, 10, 10);
-	data->player->p_ang = 0.5 * PI;
+	data->player->p_ang = 1.5 * PI;
 	data->player->p_dx = cos(player->p_ang) * 5;
 	data->player->p_dy = sin(player->p_ang) * 5;
+	printf("Initial Position:\n");
 	db_print_player_coord(player);
 }
 
