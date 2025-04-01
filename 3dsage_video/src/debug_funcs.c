@@ -1,5 +1,21 @@
 #include "../inc/test.h"
 
+void	db_print_player_x_y(t_player *player)
+{
+
+	float	p_x;
+	float	p_y;
+	int	x_pos;
+	int	y_pos;
+
+	p_x	= player->p_x;
+	p_y = player->p_y;
+	x_pos = floor(p_x / 64.0);
+	y_pos = floor(p_y / 64.0);
+	printf("p_x: %f\tp_y: %f\n", p_x, p_y);
+	printf("p_xpos: %d\tp_ypos: %d\n", x_pos, y_pos);
+}
+
 void	db_draw_line(t_data *data, t_player *play)
 {
 	int		n_pixels;
@@ -24,7 +40,7 @@ void	db_draw_line(t_data *data, t_player *play)
 	}
 }
 
-void	db_print_player_coord(t_player *p)
+void	db_print_pdx_pdy(t_player *p)
 {
 	printf("\n");
 	printf("px = %f\tpy = %f\n", p->p_x, p->p_y);

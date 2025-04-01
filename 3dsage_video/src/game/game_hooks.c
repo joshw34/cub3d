@@ -55,7 +55,8 @@ int	key(int keysym, t_data *data)
 		move(keysym, data->player);
 	else
 		return (-1);
-	db_print_player_coord(data->player);
+	db_print_player_x_y(data->player);
+	raycasting(data->player, data->ray, data->map);
 	init_map(data);
 	return (0);
 }

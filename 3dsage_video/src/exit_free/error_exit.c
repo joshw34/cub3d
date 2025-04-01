@@ -26,7 +26,7 @@ static	void	free_textures(t_data *data)
 	free(data->textures);
 }
 
-static	void	free_map_player(t_data *data)
+static	void	free_map_player_ray(t_data *data)
 {
 	if (data->map->map)
 		free_array(data->map->map);
@@ -36,12 +36,14 @@ static	void	free_map_player(t_data *data)
 	if (data->player->p_img)
 		mlx_destroy_image(data->init, data->player->p_img);
 	free(data->player);
+	if (data->ray)
+		free(data->ray);
 }
 
 static	void	free_data(t_data *data)
 {
-	if (data->map || data->player)
-		free_map_player(data);
+	if (data->map || data->player || data->ray)
+		free_map_player_ray(data);
 	if (data->textures)
 		free_textures(data);
 	if (data->bg)

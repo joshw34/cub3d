@@ -39,6 +39,7 @@
 # define ERROR_4 "Calloc Error: Map Array\n"
 # define ERROR_5 "Strdup Error: Map Array\n"
 # define ERROR_6 "Calloc Error: Texture Struct\n"
+# define ERROR_7 "Calloc Error: Ray Struct\n"
 
 typedef struct s_textures
 {
@@ -49,6 +50,20 @@ typedef struct s_textures
 	int		floor;
 	int		ceiling;
 }	t_textures;
+
+typedef struct s_ray
+{
+	int		r;
+	int		mx;
+	int		my;
+	int		mp;
+	int		dof;
+	float	rx;
+	float	ry;
+	float	ra;
+	float	xo;
+	float	yo;
+}	t_ray;
 
 typedef struct s_player
 {
@@ -79,6 +94,7 @@ typedef struct s_data
 	t_map		*map;
 	t_player	*player;
 	t_textures	*textures;
+	t_ray		*ray;
 	void		*bg;
 	int			bpp;
 	int			ln_len;
@@ -108,9 +124,13 @@ int		key(int keysym, t_data *data);
 int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
+/* raycasting.c */
+void	raycasting(t_player *play, t_ray *ray, t_map *map);
+
 /* debug_funcs.c */
+void	db_print_player_x_y(t_player *player);
 void	db_draw_line(t_data *data, t_player *play);
-void	db_print_player_coord(t_player *p);
+void	db_print_pdx_pdy(t_player *p);
 void	db_err_print(char *str);
 void	db_print_map_info(t_data *data, bool add_spaces);
 

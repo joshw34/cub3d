@@ -21,6 +21,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(GAME_SRC_DIR)/image_buffers.c \
 			$(GAME_SRC_DIR)/run_game.c \
 			$(GAME_SRC_DIR)/game_hooks.c \
+			$(GAME_SRC_DIR)/raycasting.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
