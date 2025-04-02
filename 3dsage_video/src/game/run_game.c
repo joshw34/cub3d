@@ -20,11 +20,11 @@ static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 	data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
 	data->player->p_img = mlx_new_image(data->init, 10, 10);
 	data->ray->y_hit_img = mlx_new_image(data->init, 10, 10);
-	data->player->p_ang =  PI * 2;
+	data->player->p_ang =  PI * 0.5;
 	fprintf(stderr, "%f\n", data->player->p_ang);
 	data->player->p_dx = cos(player->p_ang) * 5;
 	fprintf(stderr, "x = %f\n", data->player->p_dx);
-	data->player->p_dy = -sin(player->p_ang) * 5;
+	data->player->p_dy = sin(player->p_ang) * 5;
 	fprintf(stderr, "y = %f\n", data->player->p_dy);
 	printf("Initial Position:\n");
 	//db_print_player_coord(player);

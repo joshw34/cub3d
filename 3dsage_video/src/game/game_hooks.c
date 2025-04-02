@@ -4,21 +4,21 @@
 /* See pdx_pdy diagram */
 static	void	look(int key, t_player *play)
 {
-	if (key == LT)
+	if (key == RT)
 	{
 		play->p_ang += 0.1;
 		if (play->p_ang > 2 * PI)
 			play->p_ang -= (2 * PI);
 		play->p_dx = cos(play->p_ang) * 5;
-		play->p_dy = -sin(play->p_ang) * 5;
+		play->p_dy = sin(play->p_ang) * 5;
 	}
-	else if (key == RT)
+	else if (key == LT)
 	{
 		play->p_ang -= 0.1;
 		if (play->p_ang < 0)
 			play->p_ang += (2 * PI);
 		play->p_dx = cos(play->p_ang) * 5;
-		play->p_dy = -sin(play->p_ang) * 5;
+		play->p_dy = sin(play->p_ang) * 5;
 	}
 }
 
@@ -55,7 +55,8 @@ int	key(int keysym, t_data *data)
 		move(keysym, data->player);
 	else
 		return (-1);
-	raycasting(data->player, data->ray, data->map);
+	//raycasting_h(data->player, data->ray, data->map);
+	raycasting_v(data->player, data->ray, data->map);
 	printf("\n");
 	printf("p_x: %f\tp_y: %f\tp_ang: %f\n", data->player->p_x, data->player->p_y, data->player->p_ang);
 	printf("p_xpos: %d\tp_ypos: %d\n", (int)data->player->p_x / 64, (int)data->player->p_y / 64);

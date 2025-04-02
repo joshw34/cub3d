@@ -1,6 +1,4 @@
 #include "../../inc/test.h"
-#include "math.h"
-#include <stdio.h>
 
 void	map_pixel_to_array(t_ray *ray)
 {
@@ -22,8 +20,62 @@ void	map_pixel_to_array(t_ray *ray)
 	ray->my = (int)ray->ry / 64;*/
 }
 
+/* Vertical */
+void	raycasting_v(t_player *play, t_ray *ray, t_map *map)
+{
+	float	nTan;
+
+	ray->ra = play->p_ang;
+	ray->r = 0;
+	printf("***********************NEW************************************\n");
+	while (ray->r < 1)
+	{
+		
+		ray->dof = 0;
+		nTan = -tan(ray->ra);
+		if (ray->ra > (PI / 2) && ray->ra < (3*PI)/2)
+		{
+			ray->rx = (((int)play->p_x >> 6) << 6)-0.0001;
+			ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
+			ray->xo = -64;
+			ray->yo = -ray->xo * nTan;
+		}
+		else if (ray->ra < (PI/2) || ray->ra > (3*PI)/2) 
+		{
+			ray->rx = (((int)play->p_x >> 6) << 6) + 64;
+			ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
+			ray->xo = 64;
+			ray->yo = -ray->yo * nTan;
+		}
+		else if (ray->ra == 0 || ray->ra - PI == 0)
+		{
+			ray->rx = play->p_x;
+			ray->ry = play->p_y;
+			ray->dof = 8;
+		}
+		while (ray->dof < 20)
+		{
+			printf("rx: %f\try: %f\nxo: %f\tyo: %f\n", ray->rx, ray->ry, ray->xo, ray->yo);
+			map_pixel_to_array(ray);
+			//if (map->map[ray->my][ray->mx] == '1')
+			if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->ry) && map->map[ray->my][ray->mx] == '1')
+			{
+				printf("found wall\n");
+				ray->dof = 20;
+			}
+			else
+			{
+				ray->rx += ray->xo;
+				ray->ry += ray->yo;
+				ray->dof++;
+			}
+		}
+		ray->r++;
+	}
+}
+
 /* Horizontal */
-void	raycasting(t_player *play, t_ray *ray, t_map *map)
+void	raycasting_h(t_player *play, t_ray *ray, t_map *map)
 {
 	float	aTan;
 
@@ -34,15 +86,15 @@ void	raycasting(t_player *play, t_ray *ray, t_map *map)
 	{
 		
 		ray->dof = 0;
-		aTan = 1 / tan(ray->ra);
-		if (ray->ra < PI)
+		aTan = -1 / tan(ray->ra);
+		if (ray->ra > PI)
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6)-0.0001;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = -64;
 			ray->xo = -ray->yo * aTan;
 		}
-		else if (ray->ra > PI) 
+		else if (ray->ra < PI) 
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;

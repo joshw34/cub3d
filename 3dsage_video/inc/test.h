@@ -32,6 +32,8 @@
 # define RED 0xb92537
 
 # define PI M_PI 
+# define PI2 = M_PI / 2
+# define PI3 = (3 * M_PI) / 2
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"
@@ -126,7 +128,8 @@ int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
 /* raycasting.c */
-void	raycasting(t_player *play, t_ray *ray, t_map *map);
+void	raycasting_v(t_player *play, t_ray *ray, t_map *map);
+void	raycasting_h(t_player *play, t_ray *ray, t_map *map);
 
 /* debug_funcs.c */
 void	db_print_player_x_y(t_player *player);
