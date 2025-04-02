@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-# include "/home/jwhitley/.local/mlx/mlx.h" 
-//# include <mlx.h>
+//# include "/home/jwhitley/.local/mlx/mlx.h" 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -63,6 +63,7 @@ typedef struct s_ray
 	float	ra;
 	float	xo;
 	float	yo;
+	void	*y_hit_img;
 }	t_ray;
 
 typedef struct s_player

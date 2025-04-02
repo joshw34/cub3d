@@ -1,4 +1,5 @@
 #include "../../inc/test.h"
+#include "mlx.h"
 
 /* Radians = 0 -> 2PI. Reset angle to 2PI when reaching zero as negative is invalid*/
 /* See pdx_pdy diagram */
@@ -6,19 +7,19 @@ static	void	look(int key, t_player *play)
 {
 	if (key == LT)
 	{
-		play->p_ang -= 0.1;
-		if (play->p_ang < 0)
-			play->p_ang += (2 * PI);
-		play->p_dx = cos(play->p_ang) * 5;
-		play->p_dy = sin(play->p_ang) * 5;
-	}
-	else if (key == RT)
-	{
 		play->p_ang += 0.1;
 		if (play->p_ang > 2 * PI)
 			play->p_ang -= (2 * PI);
 		play->p_dx = cos(play->p_ang) * 5;
-		play->p_dy = sin(play->p_ang) * 5;
+		play->p_dy = -sin(play->p_ang) * 5;
+	}
+	else if (key == RT)
+	{
+		play->p_ang -= 0.1;
+		if (play->p_ang < 0)
+			play->p_ang += (2 * PI);
+		play->p_dx = cos(play->p_ang) * 5;
+		play->p_dy = -sin(play->p_ang) * 5;
 	}
 }
 
@@ -37,12 +38,12 @@ static	void	move(int key, t_player *play)
 	}
 	else if (key == A)
 	{
-		play->p_x -= play->p_dy;
+		play->p_x += play->p_dy;
 	    play->p_y -= play->p_dx;
 	}
 	else if (key == D)
 	{
-		play->p_x += play->p_dy;
+		play->p_x -= play->p_dy;
 	    play->p_y += play->p_dx;
 	}
 }
@@ -55,9 +56,15 @@ int	key(int keysym, t_data *data)
 		move(keysym, data->player);
 	else
 		return (-1);
-	db_print_player_x_y(data->player);
 	raycasting(data->player, data->ray, data->map);
+	printf("\n");
+	printf("p_x: %f\tp_y: %f\tp_ang: %f\n", data->player->p_x, data->player->p_y, data->player->p_ang);
+	printf("p_xpos: %d\tp_ypos: %d\n", (int)data->player->p_x / 64, (int)data->player->p_y / 64);
+	printf("rx: %f\try: %f\tra: %f\n", data->ray->rx, data->ray->ry, data->ray->ra);
+	printf("rmx: %d\trmy: %d\n", data->ray->mx, data->ray->my);
+	printf("\n");
 	init_map(data);
+	mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->rx - 5, data->ray->ry - 5);
 	return (0);
 }
 

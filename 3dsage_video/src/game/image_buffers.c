@@ -1,6 +1,28 @@
 #include "../../inc/test.h"
 
 /* Draw each tile. Currently set to 64x64 pixels*/
+void	y_wall_hit(t_data *data)
+{
+	char	*addr;
+	int		*pixel;
+	int x = 0;
+	int y = 0;
+
+	addr = mlx_get_data_addr(data->ray->y_hit_img, &data->bpp, &data->ln_len,
+			&data->endian);
+	while (y < 10)
+	{
+		while (x < 10)
+		{
+			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
+			*pixel = RED;
+			x++;
+		}
+		x = 0;
+		y++;
+	}
+}
+
 static	void	set_map2(t_data *data, int x, int y, int color)
 {
 	int		*pixel;

@@ -1,4 +1,5 @@
 #include "../inc/test.h"
+#include <stdio.h>
 void	init_ray_struct(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
@@ -47,6 +48,7 @@ t_data	*init_structs(char	*map_file)
 /* Data split in to multiple structs to keep tidy, may need to reorganise later */
 int	main(int ac, char **av)
 {
+	printf("%f\n", PI);
 	t_data	*data;
 	if (ac != 2)
 		exit(EXIT_FAILURE);

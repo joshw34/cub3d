@@ -5,15 +5,19 @@ void	db_print_player_x_y(t_player *player)
 
 	float	p_x;
 	float	p_y;
-	int	x_pos;
-	int	y_pos;
+	float	p_ang;
+	int		x_pos;
+	int		y_pos;
 
 	p_x	= player->p_x;
 	p_y = player->p_y;
+	p_ang = player->p_ang;
 	x_pos = floor(p_x / 64.0);
 	y_pos = floor(p_y / 64.0);
-	printf("p_x: %f\tp_y: %f\n", p_x, p_y);
+	printf("\n");
+	printf("p_x: %f\tp_y: %f\tp_ang: %f\n", p_x, p_y, p_ang);
 	printf("p_xpos: %d\tp_ypos: %d\n", x_pos, y_pos);
+	printf("\n");
 }
 
 void	db_draw_line(t_data *data, t_player *play)
@@ -24,8 +28,8 @@ void	db_draw_line(t_data *data, t_player *play)
 	double	delta_x;
 	double	delta_y;
 
-	delta_x = play->p_dx * 25;
-	delta_y = play->p_dy * 25;
+	delta_x = play->p_dx * 525;
+	delta_y = play->p_dy * 525;
 	n_pixels = sqrt((delta_x * delta_x) + delta_y * delta_y);
 	delta_x /= n_pixels;
 	delta_y /= n_pixels;

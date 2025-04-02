@@ -1,67 +1,85 @@
 #include "../../inc/test.h"
+#include "math.h"
 #include <stdio.h>
 
 void	map_pixel_to_array(t_ray *ray)
 {
+	db_err_print("setting map coord");
 	float	temp;
 
 	temp = ray->rx / 64.0;
-	ray->mx = floor(temp);
+	if (temp < 1)
+		ray->mx = 0;
+	else
+		ray->mx = (int)temp;
 	temp = ray->ry / 64.0;
-	ray->my = floor(temp);
-	printf("rx: %f\try: %f\n", ray->rx, ray->ry);
-	ft_printf("mx: %d\tmy: %d\n", ray->mx, ray->my);
+	if (temp < 1)
+		ray->my = 0;
+	else
+		ray->my = (int)ray->rx / 64;
+	printf("map coord: mx %d\tmy %d\n\n", ray->mx, ray->my);
+	/*ray->mx = (int)ray->rx / 64;
+	ray->my = (int)ray->ry / 64;*/
 }
 
 /* Horizontal */
 void	raycasting(t_player *play, t_ray *ray, t_map *map)
 {
-	printf("!!!!!!!!!!!!!!!!");
 	float	aTan;
 
 	ray->ra = play->p_ang;
 	ray->r = 0;
+	printf("***********************NEW************************************\n");
 	while (ray->r < 1)
 	{
+		
 		ray->dof = 0;
-		aTan = -1 / tan(ray->ra);
-		if (ray->ra > PI)
+		aTan = 1 / tan(ray->ra);
+		if (ray->ra < PI)
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6)-0.0001;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = -64;
 			ray->xo = -ray->yo * aTan;
 		}
-		if (ray->ra < PI)
+		else if (ray->ra > PI) 
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = 64;
-			ray->xo = ray->yo * aTan;
+			ray->xo = -ray->yo * aTan;
 		}
-		if (ray->ra == 0 || ray->ra == PI)
+		else if (ray->ra == 0 || ray->ra - PI == 0)
 		{
 			ray->rx = play->p_x;
 			ray->ry = play->p_y;
 			ray->dof = 8;
 		}
-		while (ray->dof < 6)
+		while (ray->dof < 20)
 		{
+			printf("rx: %f\try: %f\nxo: %f\tyo: %f\n", ray->rx, ray->ry, ray->xo, ray->yo);
 			map_pixel_to_array(ray);
-			if (map->map[ray->my][ray->mx] == '1')
+			//if (map->map[ray->my][ray->mx] == '1')
+			if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->ry) && map->map[ray->my][ray->mx] == '1')
 			{
 				printf("found wall\n");
-				ray->dof = 6;
+				ray->dof = 20;
 			}
 			else
 			{
 				ray->rx += ray->xo;
 				ray->ry += ray->yo;
+				/*if (ray->ry < 0)
+					ray->ry = 0;
+				if (ray->ry > 640)
+					ray->ry = 640;
+				if (ray->rx < 0)
+					ray->rx = 0;
+				if (ray->ry > 640)
+					ray->rx = 640;*/
 				ray->dof++;
 			}
 		}
 		ray->r++;
 	}
-	db_print_player_x_y(play);
-	map_pixel_to_array(ray);
 }
