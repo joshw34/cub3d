@@ -15,7 +15,7 @@ void	y_wall_hit(t_data *data)
 		while (x < 10)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = RED;
+			*pixel = rgb_color_conversion(data->init, 255, 0, 0);
 			x++;
 		}
 		x = 0;

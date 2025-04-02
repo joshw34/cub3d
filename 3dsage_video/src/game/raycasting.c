@@ -44,7 +44,7 @@ void	raycasting(t_player *play, t_ray *ray, t_map *map)
 		}
 		else if (ray->ra > PI) 
 		{
-			ray->ry = (((int)play->p_y >> 6) << 6) + 64 +0.0001;
+			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = 64;
 			ray->xo = -ray->yo * aTan;
@@ -69,14 +69,6 @@ void	raycasting(t_player *play, t_ray *ray, t_map *map)
 			{
 				ray->rx += ray->xo;
 				ray->ry += ray->yo;
-				/*if (ray->ry < 0)
-					ray->ry = 0;
-				if (ray->ry > 640)
-					ray->ry = 640;
-				if (ray->rx < 0)
-					ray->rx = 0;
-				if (ray->ry > 640)
-					ray->rx = 640;*/
 				ray->dof++;
 			}
 		}
