@@ -1,4 +1,5 @@
 #include "../../inc/test.h"
+#include "mlx.h"
 
 void	free_array(char **array)
 {
@@ -37,7 +38,10 @@ static	void	free_map_player_ray(t_data *data)
 		mlx_destroy_image(data->init, data->player->p_img);
 	free(data->player);
 	if (data->ray)
+	{
+		mlx_destroy_image(data->init, data->ray->y_hit_img);
 		free(data->ray);
+	}
 }
 
 static	void	free_data(t_data *data)

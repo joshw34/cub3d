@@ -16,7 +16,7 @@ void	map_pixel_to_array(t_ray *ray)
 	if (temp < 1)
 		ray->my = 0;
 	else
-		ray->my = (int)ray->rx / 64;
+		ray->my = (int)temp;
 	printf("map coord: mx %d\tmy %d\n\n", ray->mx, ray->my);
 	/*ray->mx = (int)ray->rx / 64;
 	ray->my = (int)ray->ry / 64;*/
@@ -44,7 +44,7 @@ void	raycasting(t_player *play, t_ray *ray, t_map *map)
 		}
 		else if (ray->ra > PI) 
 		{
-			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
+			ray->ry = (((int)play->p_y >> 6) << 6) + 64 +0.0001;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = 64;
 			ray->xo = -ray->yo * aTan;
