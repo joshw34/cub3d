@@ -101,14 +101,14 @@ static	void	raycasting_h(t_player *play, t_ray *ray, t_map *map, float *dH)
 	{
 		ray->dof = 0;
 		aTan = -1 / tan(ray->ra);
-		if (ray->ra > PI)
+		if (ray->ra > PI) //UP
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6)-0.0001;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
 			ray->yo = -64;
 			ray->xo = -ray->yo * aTan;
 		}
-		else if (ray->ra < PI) 
+		else if (ray->ra < PI) //DOWN
 		{
 			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
 			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
@@ -163,5 +163,4 @@ void	raycasting(t_data *data)
 		data->ray->rx = data->ray->h_rx;
 		data->ray->ry = data->ray->h_ry;
 	}
-	//find_first_hit(data->ray);
 }
