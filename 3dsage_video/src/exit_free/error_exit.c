@@ -1,5 +1,4 @@
 #include "../../inc/test.h"
-#include "mlx.h"
 
 void	free_array(char **array)
 {

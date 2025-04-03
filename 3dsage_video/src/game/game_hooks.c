@@ -55,8 +55,7 @@ int	key(int keysym, t_data *data)
 		move(keysym, data->player);
 	else
 		return (-1);
-	//raycasting_h(data->player, data->ray, data->map);
-	raycasting_v(data->player, data->ray, data->map);
+	raycasting(data);
 	printf("\n");
 	printf("p_x: %f\tp_y: %f\tp_ang: %f\n", data->player->p_x, data->player->p_y, data->player->p_ang);
 	printf("p_xpos: %d\tp_ypos: %d\n", (int)data->player->p_x / 64, (int)data->player->p_y / 64);
@@ -64,7 +63,10 @@ int	key(int keysym, t_data *data)
 	printf("rmx: %d\trmy: %d\n", data->ray->mx, data->ray->my);
 	printf("\n");
 	init_map(data);
-	mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->rx - 5, data->ray->ry - 5);
+	db_show_both_hits(data);
+	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->rx, data->ray->ry);
+	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->h_rx - 5, data->ray->h_ry - 5);
+	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->v_rx - 5, data->ray->v_ry - 5);
 	return (0);
 }
 

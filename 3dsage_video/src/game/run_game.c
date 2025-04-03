@@ -34,7 +34,9 @@ void	run_game(t_data *data)
 {
 	init_mlx_data(data, data->player, data->map);
 	set_image_data(data);
+	printf("#######################################################################################################################\n");
 	init_map(data);
+	raycasting(data);
 	mlx_hook(data->win, DestroyNotify, 0, &win_close, data);
 	mlx_expose_hook(data->win, &expose_win, data);
 	mlx_hook(data->win, KeyPress, KeyPressMask, &key, data);

@@ -43,6 +43,8 @@
 # define ERROR_6 "Calloc Error: Texture Struct\n"
 # define ERROR_7 "Calloc Error: Ray Struct\n"
 
+typedef struct  s_data t_data;
+
 typedef struct s_textures
 {
 	char	*NO;
@@ -58,14 +60,23 @@ typedef struct s_ray
 	int		r;
 	int		mx;
 	int		my;
+	int		v_mx;
+	int		h_mx;
+	int		v_my;
+	int		h_my;
 	int		mp;
 	int		dof;
 	float	rx;
 	float	ry;
+	float	v_rx;
+	float	h_rx;
+	float	v_ry;
+	float	h_ry;
 	float	ra;
 	float	xo;
 	float	yo;
 	void	*y_hit_img;
+	t_data	*data;
 }	t_ray;
 
 typedef struct s_player
@@ -76,6 +87,7 @@ typedef struct s_player
 	float		p_dx;
 	float		p_dy;
 	float		p_ang;
+	t_data		*data;
 }	t_player;
 
 typedef struct s_map
@@ -88,6 +100,7 @@ typedef struct s_map
 	int		len;
 	int		size_x;
 	int		size_y;
+	t_data	*data;
 }	t_map;
 
 typedef struct s_data
@@ -128,10 +141,10 @@ int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
 /* raycasting.c */
-void	raycasting_v(t_player *play, t_ray *ray, t_map *map);
-void	raycasting_h(t_player *play, t_ray *ray, t_map *map);
+void	raycasting(t_data *data);
 
 /* debug_funcs.c */
+void	db_show_both_hits(t_data *data);
 void	db_print_player_x_y(t_player *player);
 void	db_draw_line(t_data *data, t_player *play);
 void	db_print_pdx_pdy(t_player *p);

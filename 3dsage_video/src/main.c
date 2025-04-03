@@ -1,10 +1,11 @@
 #include "../inc/test.h"
-#include <stdio.h>
+
 void	init_ray_struct(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
 	if (!data->ray)
 		exit_game(data, true, ERROR_7);
+	data->ray->data = data;
 }
 
 void	init_texture_struct(t_data *data)
@@ -19,6 +20,7 @@ void	init_player_struct(t_data *data)
 	data->player = ft_calloc(1, sizeof(t_player));
 	data->player->p_x = 100.0;
 	data->player->p_y = 100.0;
+	data->player->data = data;
 }
 
 void	init_map_struct(t_data *data, char *map_file)
@@ -29,6 +31,7 @@ void	init_map_struct(t_data *data, char *map_file)
 	data->map->map_file = map_file;
 	data->map->lines = 0;
 	data->map->len = -1;
+	data->map->data = data;
 }
 
 t_data	*init_structs(char	*map_file)
