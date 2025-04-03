@@ -1,5 +1,13 @@
 #include "../../inc/test.h"
 
+static	float	ray_len(t_ray *ray, t_player *play)
+{
+	float	len;
+
+	len = (sqrt((ray->rx - play->p_x) * (ray->rx - play->p_x) + (ray->ry - play->p_y) * (ray->ry - play->p_y)));
+	return (len);
+}
+
 static	void	map_pixel_to_array(t_ray *ray)
 {
 	db_err_print("setting map coord");
@@ -27,7 +35,7 @@ static	void	map_pixel_to_array(t_ray *ray)
 }
 
 /* Vertical */
-static	void	raycasting_v(t_player *play, t_ray *ray, t_map *map)
+static	void	raycasting_v(t_player *play, t_ray *ray, t_map *map, float *dV)
 {
 	float	nTan;
 
@@ -65,6 +73,9 @@ static	void	raycasting_v(t_player *play, t_ray *ray, t_map *map)
 			if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->ry) && map->map[ray->my][ray->mx] == '1')
 			{
 				printf("found wall\n");
+				ray->v_rx = ray->rx;
+				ray->v_ry = ray->ry;
+				*dV = ray_len(ray, play);
 				ray->dof = 20;
 			}
 			else
@@ -76,14 +87,10 @@ static	void	raycasting_v(t_player *play, t_ray *ray, t_map *map)
 		}
 		ray->r++;
 	}
-	ray->v_rx = ray->rx;
-	ray->v_ry = ray->ry;
-	ray->v_mx = ray->mx;
-	ray->v_my = ray->my;
 }
 
 /* Horizontal */
-static	void	raycasting_h(t_player *play, t_ray *ray, t_map *map)
+static	void	raycasting_h(t_player *play, t_ray *ray, t_map *map, float *dH)
 {
 	float	aTan;
 
@@ -121,6 +128,9 @@ static	void	raycasting_h(t_player *play, t_ray *ray, t_map *map)
 			if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->ry) && map->map[ray->my][ray->mx] == '1')
 			{
 				printf("found wall\n");
+				ray->h_rx = ray->rx;
+				ray->h_ry = ray->ry;
+				*dH = ray_len(ray, play);
 				ray->dof = 20;
 			}
 			else
@@ -132,15 +142,26 @@ static	void	raycasting_h(t_player *play, t_ray *ray, t_map *map)
 		}
 		ray->r++;
 	}
-	ray->h_rx = ray->rx;
-	ray->h_ry = ray->ry;
-	ray->h_mx = ray->mx;
-	ray->h_my = ray->my;
 }
 
 void	raycasting(t_data *data)
 {
-	raycasting_h(data->player, data->ray, data->map);
-	raycasting_v(data->player, data->ray, data->map);
+	float	dH;
+	float	dV;
+
+	dH = 2147483647.0;
+	dV = 2147483647.0;
+	data->ray->v_rx = -1;
+	data->ray->v_ry = -1;
+	data->ray->h_rx = -1;
+	data->ray->h_ry = -1;
+	raycasting_h(data->player, data->ray, data->map, &dH);
+	raycasting_v(data->player, data->ray, data->map, &dV);
+	printf("dV = %f\ndH = %f\n", dV, dH);
+	if (dH < dV)
+	{
+		data->ray->rx = data->ray->h_rx;
+		data->ray->ry = data->ray->h_ry;
+	}
 	//find_first_hit(data->ray);
 }

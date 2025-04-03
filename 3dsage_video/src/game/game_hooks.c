@@ -63,10 +63,9 @@ int	key(int keysym, t_data *data)
 	printf("rmx: %d\trmy: %d\n", data->ray->mx, data->ray->my);
 	printf("\n");
 	init_map(data);
-	db_show_both_hits(data);
-	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->rx, data->ray->ry);
-	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->h_rx - 5, data->ray->h_ry - 5);
-	//mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->v_rx - 5, data->ray->v_ry - 5);
+	printf("## vrx: %f\tvry %f\n## hrx: %f\thry: %f\n", data->ray->v_rx, data->ray->v_ry, data->ray->h_rx, data->ray->h_ry);
+	//db_show_both_hits(data);
+	db_show_first_hit(data);
 	return (0);
 }
 

@@ -12,6 +12,7 @@
 # include <unistd.h>
 # include <stdbool.h>
 # include <math.h>
+# include <limits.h>
 
 # define W 119
 # define A 97
@@ -60,10 +61,6 @@ typedef struct s_ray
 	int		r;
 	int		mx;
 	int		my;
-	int		v_mx;
-	int		h_mx;
-	int		v_my;
-	int		h_my;
 	int		mp;
 	int		dof;
 	float	rx;
@@ -144,6 +141,7 @@ int		win_close(t_data *data);
 void	raycasting(t_data *data);
 
 /* debug_funcs.c */
+void	db_show_first_hit(t_data *data);
 void	db_show_both_hits(t_data *data);
 void	db_print_player_x_y(t_player *player);
 void	db_draw_line(t_data *data, t_player *play);
