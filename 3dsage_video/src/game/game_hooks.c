@@ -56,16 +56,8 @@ int	key(int keysym, t_data *data)
 	else
 		return (-1);
 	raycasting(data);
-	printf("\n");
-	printf("p_x: %f\tp_y: %f\tp_ang: %f\n", data->player->p_x, data->player->p_y, data->player->p_ang);
-	printf("p_xpos: %d\tp_ypos: %d\n", (int)data->player->p_x / 64, (int)data->player->p_y / 64);
-	printf("rx: %f\try: %f\tra: %f\n", data->ray->rx, data->ray->ry, data->ray->ra);
-	printf("rmx: %d\trmy: %d\n", data->ray->mx, data->ray->my);
-	printf("\n");
-	init_map(data);
-	printf("## vrx: %f\tvry %f\n## hrx: %f\thry: %f\n", data->ray->v_rx, data->ray->v_ry, data->ray->h_rx, data->ray->h_ry);
-	//db_show_both_hits(data);
-	db_show_first_hit(data);
+//	init_map(data);
+//	db_show_first_hit(data);
 	return (0);
 }
 

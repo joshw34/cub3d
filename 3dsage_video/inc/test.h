@@ -61,7 +61,6 @@ typedef struct s_ray
 	int		r;
 	int		mx;
 	int		my;
-	int		mp;
 	int		dof;
 	float	rx;
 	float	ry;
@@ -69,6 +68,8 @@ typedef struct s_ray
 	float	h_rx;
 	float	v_ry;
 	float	h_ry;
+	float	dH;
+	float	dV;
 	float	ra;
 	float	xo;
 	float	yo;
@@ -139,6 +140,12 @@ int		win_close(t_data *data);
 
 /* raycasting.c */
 void	raycasting(t_data *data);
+
+/* raycasting_utils.c */
+float	ray_len(t_ray *ray, t_player *play);
+void	found_wall(t_ray *ray, t_player *play, char direction);
+void	map_pixel_to_array(t_ray *ray);
+void	reset_ray_data(t_ray *ray);
 
 /* debug_funcs.c */
 void	db_show_first_hit(t_data *data);
