@@ -1,5 +1,13 @@
 #include "../inc/test.h"
 
+void	init_game_struct(t_data *data)
+{
+	data->game = ft_calloc(1, sizeof(t_game));
+	if (!data->game)
+		exit_game(data, true, ERROR_8);
+	data->game->data = data;
+}
+
 void	init_ray_struct(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
@@ -45,6 +53,7 @@ t_data	*init_structs(char	*map_file)
 	init_player_struct(data);
 	init_texture_struct(data);
 	init_ray_struct(data);
+	init_game_struct(data);
 	return (data);
 }
 

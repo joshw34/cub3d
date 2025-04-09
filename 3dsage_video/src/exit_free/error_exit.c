@@ -1,4 +1,5 @@
 #include "../../inc/test.h"
+#include "mlx.h"
 
 void	free_array(char **array)
 {
@@ -11,6 +12,15 @@ void	free_array(char **array)
 		i++;
 	}
 	free(array);
+}
+
+static	void	free_game(t_data *data)
+{
+	if (data->game->bg_img)
+		mlx_destroy_image(data->init, data->game->bg_img);
+	if (data->game->game_img)
+		mlx_destroy_image(data->init, data->game->game_img);
+	free(data->game);
 }
 
 static	void	free_textures(t_data *data)
@@ -49,10 +59,12 @@ static	void	free_data(t_data *data)
 		free_map_player_ray(data);
 	if (data->textures)
 		free_textures(data);
-	if (data->bg)
-		mlx_destroy_image(data->init, data->bg);
+	if (data->game)
+		free_game(data);
 	if (data->map_win)
 		mlx_destroy_window(data->init, data->map_win);
+	if (data->rc_win)
+		mlx_destroy_window(data->init, data->rc_win);
 	if (data->init)
 	{
 		mlx_destroy_display(data->init);

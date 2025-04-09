@@ -55,9 +55,7 @@ int	key(int keysym, t_data *data)
 		move(keysym, data->player);
 	else
 		return (-1);
-	raycasting(data);
-//	init_map(data);
-//	db_show_first_hit(data);
+	raycasting(data, data->ray, data->player, data->game);
 	return (0);
 }
 

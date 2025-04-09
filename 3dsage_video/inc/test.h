@@ -19,13 +19,11 @@
 # define S 115
 # define D 100
 
-# define UP 65362
 # define LT 65361
-# define DN 65364
 # define RT 65363
 
-# define MAPX 1200 
-# define MAPY 600
+# define WINX 600 
+# define WINY 300
 
 # define BLACK 0x000000
 # define WHITE 0xffffff
@@ -41,6 +39,7 @@
 # define ERROR_5 "Strdup Error: Map Array\n"
 # define ERROR_6 "Calloc Error: Texture Struct\n"
 # define ERROR_7 "Calloc Error: Ray Struct\n"
+# define ERROR_8 "Calloc Error: Game Struct\n"
 
 typedef struct  s_data t_data;
 
@@ -53,6 +52,16 @@ typedef struct s_textures
 	int		floor;
 	int		ceiling;
 }	t_textures;
+
+typedef struct s_game
+{
+	void	*bg_img;
+	char	*bg_addr;
+	void	*game_img;
+	char	*game_addr;
+	int		total_bytes;
+	t_data	*data;
+}	t_game;
 
 typedef struct s_ray
 {
@@ -78,7 +87,7 @@ typedef struct s_ray
 
 typedef struct s_player
 {
-	void	*p_img;
+	void		*p_img;
 	float		p_x;
 	float		p_y;
 	float		p_dx;
@@ -109,7 +118,7 @@ typedef struct s_data
 	t_player	*player;
 	t_textures	*textures;
 	t_ray		*ray;
-	void		*bg;
+	t_game		*game;
 	int			bpp;
 	int			ln_len;
 	int			endian;
@@ -126,8 +135,14 @@ int		ft_strlen_no_nl(const char *str);
 /* error_exit.c */
 void	exit_game(t_data *data, bool error, char *msg);
 
-/* set_color.c */
+/* images_bg_game.c */
+void	set_walls(t_data *data, int x, int y, int color, char direction);
 void	set_image_data(t_data *data);
+
+/* images_map.c */
+void	set_player_img(t_data *data, int x, int y);
+void	set_map_img(t_data *data);
+void	fix_fisheye(t_ray *ray, t_player *player);
 
 /* run_game.c */
 void	init_map(t_data *data);
@@ -139,7 +154,7 @@ int		expose_win(t_data *data);
 int		win_close(t_data *data);
 
 /* raycasting.c */
-void	raycasting(t_data *data);
+void	raycasting(t_data *data, t_ray *ray, t_player *player, t_game *game);
 
 /* raycasting_utils.c */
 float	ray_len(t_ray *ray, t_player *play);
@@ -147,6 +162,11 @@ void	found_wall(t_ray *ray, t_player *play, char direction);
 void	map_pixel_to_array(t_ray *ray);
 float	deg_to_rad(int deg);
 void	reset_ray_data(t_ray *ray);
+
+/* raycasting_utils_2.c */
+void	set_next_angle(t_ray *ray);
+void	fix_fisheye(t_ray *ray, t_player *player);
+void	find_closest_hit(t_ray *ray);
 
 /* debug_funcs.c */
 void	db_show_first_hit(t_data *data);

@@ -16,11 +16,13 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSING_SRC_DIR)/parse_map.c \
 			$(PARSING_SRC_DIR)/parsing_utils.c \
 			$(EXIT_FREE_SRC_DIR)/error_exit.c \
-			$(GAME_SRC_DIR)/image_buffers.c \
+			$(GAME_SRC_DIR)/image_bg_game.c \
+			$(GAME_SRC_DIR)/images_map.c \
 			$(GAME_SRC_DIR)/run_game.c \
 			$(GAME_SRC_DIR)/game_hooks.c \
 			$(GAME_SRC_DIR)/raycasting.c \
 			$(GAME_SRC_DIR)/raycasting_utils.c \
+			$(GAME_SRC_DIR)/raycasting_utils_2.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

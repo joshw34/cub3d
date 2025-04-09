@@ -72,30 +72,25 @@ static	void	cast_h(t_player *play, t_ray *ray, t_map *map)
 	cast_common(ray, play, map, 'h');
 }
 
-void	raycasting(t_data *data)
+void	raycasting(t_data *data, t_ray *ray, t_player *player, t_game *game)
 {
-	data->ray->r = 0;
-	data->ray->ra = data->player->p_ang - deg_to_rad(30);
+	ray->r = 0;
+	ray->ra = player->p_ang - deg_to_rad(30);
 	init_map(data);
-	while (data->ray->r < 60)
+	ft_memcpy(game->game_addr, game->bg_addr, game->total_bytes);
+	while (ray->r < 60)
 	{
-		reset_ray_data(data->ray);
-		cast_h(data->player, data->ray, data->map);
-		cast_v(data->player, data->ray, data->map);
-		if (data->ray->dH < data->ray->dV)
-		{
-			data->ray->rx = data->ray->h_rx;
-			data->ray->ry = data->ray->h_ry;
-			data->ray->dRay = data->ray->dH;
-		}
-		else
-			data->ray->dRay = data->ray->dV;
+		reset_ray_data(ray);
+		cast_h(player, ray, data->map);
+		cast_v(player, ray, data->map);
+		find_closest_hit(ray);
 		db_show_first_hit(data);
-		data->ray->r++;
-		data->ray->ra += deg_to_rad(1);
-		if (data->ray->ra < 0)
-			data->ray->ra += (2*PI);
-		if (data->ray->ra > 2*PI)
-			data->ray->ra -= (2*PI);
+		fix_fisheye(ray, player);
+		if (ray->dH < ray->dV)
+			set_walls(data, 0, 0, 0, 'h');
+		else
+			set_walls(data, 0, 0, 0, 'v');
+		set_next_angle(ray);
+		ray->r++;
 	}
 }
