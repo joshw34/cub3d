@@ -2,7 +2,8 @@
 
 static	void	cast_common(t_ray *ray, t_player *play, t_map *map, char dir)
 {
-	if (ray->ra == 0 || ray->ra - PI == 0)
+	if (ray->ra == 0 || ray->ra - PI == 0 || ray->ra == PI / 2
+		|| ray->ra == (3 * PI) / 2)
 	{
 		ray->rx = play->p_x;
 		ray->ry = play->p_y;
@@ -11,7 +12,7 @@ static	void	cast_common(t_ray *ray, t_player *play, t_map *map, char dir)
 	while (ray->dof < 20)
 	{
 		map_pixel_to_array(ray);
-		if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->ry)
+		if ((ray->mx >= 0 && ray->mx < 10) && (ray->my >= 0 && ray->my < 10)
 			&& map->map[ray->my][ray->mx] == '1')
 			found_wall(ray, play, dir);
 		else
