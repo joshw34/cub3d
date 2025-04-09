@@ -1,12 +1,13 @@
 #include "../../inc/test.h"
+#include "mlx.h"
 
 /* Initialse all images then redraw in loop */
 void	init_map(t_data *data)
 {
-	//mlx_put_image_to_window(data->init, data->win, data->bg, 0, 0);
-	mlx_put_image_to_window(data->init, data->win, data->map->m_img, 0, 0);
-	mlx_put_image_to_window(data->init, data->win, data->player->p_img, data->player->p_x, data->player->p_y);
+	mlx_put_image_to_window(data->init, data->map_win, data->map->m_img, 0, 0);
+	mlx_put_image_to_window(data->init, data->map_win, data->player->p_img, data->player->p_x, data->player->p_y);
 	db_draw_line(data, data->player);
+	mlx_put_image_to_window(data->init, data->rc_win, data->bg, 0, 0);
 }
 
 /* Create mlx, window and image pointers*/
@@ -14,18 +15,15 @@ void	init_map(t_data *data)
 static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 {
 	data->init = mlx_init();
-	data->win = mlx_new_window(data->init, map->size_x, map->size_y, "cub3d");
-	data->bg = mlx_new_image(data->init, map->size_x, map->size_y);
+	data->map_win = mlx_new_window(data->init, map->size_x, map->size_y, "minimap");
+	data->rc_win = mlx_new_window(data->init, MAPX, MAPY, "cub3d");
+	data->bg = mlx_new_image(data->init, MAPX, MAPY);
 	data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
 	data->player->p_img = mlx_new_image(data->init, 10, 10);
 	data->ray->y_hit_img = mlx_new_image(data->init, 10, 10);
 	data->player->p_ang =  PI * 2;
-	fprintf(stderr, "%f\n", data->player->p_ang);
 	data->player->p_dx = cos(player->p_ang) * 5;
-	fprintf(stderr, "x = %f\n", data->player->p_dx);
 	data->player->p_dy = sin(player->p_ang) * 5;
-	fprintf(stderr, "y = %f\n", data->player->p_dy);
-	printf("Initial Position:\n");
 }
 
 void	run_game(t_data *data)
@@ -33,8 +31,9 @@ void	run_game(t_data *data)
 	init_mlx_data(data, data->player, data->map);
 	set_image_data(data);
 	init_map(data);
-	mlx_hook(data->win, DestroyNotify, 0, &win_close, data);
-	mlx_expose_hook(data->win, &expose_win, data);
-	mlx_hook(data->win, KeyPress, KeyPressMask, &key, data);
+	mlx_hook(data->map_win, DestroyNotify, 0, &win_close, data);
+	mlx_hook(data->rc_win, DestroyNotify, 0, &win_close, data);
+	mlx_expose_hook(data->map_win, &expose_win, data);
+	mlx_hook(data->map_win, KeyPress, KeyPressMask, &key, data);
 	mlx_loop(data->init);
 }

@@ -101,12 +101,15 @@ static	void	set_background(t_data *data, int x, int y, int color)
 
 	addr = mlx_get_data_addr(data->bg, &data->bpp, &data->ln_len,
 			&data->endian);
-	while (y < data->map->size_y)
+	while (y < MAPY)
 	{
-		while (x < data->map->size_x)
+		while (x < MAPX)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = rgb_color_conversion(data->init, 0, 0, 0);
+			if (y <= (MAPY / 2))
+				*pixel = rgb_color_conversion(data->init, 37, 29, 235);
+			else
+				*pixel = rgb_color_conversion(data->init, 28, 144, 14);
 			x++;
 		}
 		x = 0;

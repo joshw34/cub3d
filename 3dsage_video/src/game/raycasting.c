@@ -4,7 +4,6 @@ static	void	cast_common(t_ray *ray, t_player *play, t_map *map, char dir)
 {
 	if (ray->ra == 0 || ray->ra - PI == 0)
 	{
-		db_err_print("5");
 		ray->rx = play->p_x;
 		ray->ry = play->p_y;
 		ray->dof = 20;
@@ -27,82 +26,75 @@ static	void	cast_common(t_ray *ray, t_player *play, t_map *map, char dir)
 /* Vertical */
 static	void	cast_v(t_player *play, t_ray *ray, t_map *map)
 {
-	db_err_print("Vertical");
 	float	nTan;
 
-	ray->ra = play->p_ang;
-	ray->r = 0;
-	while (ray->r < 1)
+	ray->dof = 0;
+	nTan = -tan(ray->ra);
+	if (ray->ra > (PI / 2) && ray->ra < (3*PI)/2)
 	{
-		ray->dof = 0;
-		nTan = -tan(ray->ra);
-		if (ray->ra > (PI / 2) && ray->ra < (3*PI)/2)
-		{
-			db_err_print("3");
-			ray->rx = (((int)play->p_x >> 6) << 6)-0.0001;
-			ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
-			ray->xo = -64;
-			ray->yo = -ray->xo * nTan;
-		}
-		else if (ray->ra < (PI/2) || ray->ra > (3*PI)/2) 
-		{
-			db_err_print("4");
-			ray->rx = (((int)play->p_x >> 6) << 6) + 64;
-			ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
-			ray->xo = 64;
-			ray->yo = -ray->xo * nTan;
-		}
-		cast_common(ray, play, map, 'v');
-		ray->r++;
+		ray->rx = (((int)play->p_x >> 6) << 6)-0.0001;
+		ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
+		ray->xo = -64;
+		ray->yo = -ray->xo * nTan;
 	}
+	else if (ray->ra < (PI/2) || ray->ra > (3*PI)/2) 
+	{
+		ray->rx = (((int)play->p_x >> 6) << 6) + 64;
+		ray->ry = (play->p_x - ray->rx) * nTan + play->p_y;
+		ray->xo = 64;
+		ray->yo = -ray->xo * nTan;
+	}
+	cast_common(ray, play, map, 'v');
 }
 
 /* Horizontal */
 static	void	cast_h(t_player *play, t_ray *ray, t_map *map)
 {
-	db_err_print("Horizontal");
 	float	aTan;
 
-	ray->ra = play->p_ang;
-	ray->r = 0;
-	while (ray->r < 1)
+	ray->dof = 0;
+	aTan = -1 / tan(ray->ra);
+	if (ray->ra > PI) //UP
 	{
-		ray->dof = 0;
-		aTan = -1 / tan(ray->ra);
-		if (ray->ra > PI) //UP
-		{
-			db_err_print("1");
-			ray->ry = (((int)play->p_y >> 6) << 6)-0.0001;
-			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
-			ray->yo = -64;
-			ray->xo = -ray->yo * aTan;
-		}
-		else if (ray->ra < PI) //DOWN
-		{
-			db_err_print("2");
-			ray->ry = (((int)play->p_y >> 6) << 6) + 64;
-			ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
-			ray->yo = 64;
-			ray->xo = -ray->yo * aTan;
-		}
-		cast_common(ray, play, map, 'h');
-		ray->r++;
+		ray->ry = (((int)play->p_y >> 6) << 6)-0.0001;
+		ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
+		ray->yo = -64;
+		ray->xo = -ray->yo * aTan;
 	}
+	else if (ray->ra < PI) //DOWN
+	{
+		ray->ry = (((int)play->p_y >> 6) << 6) + 64;
+		ray->rx = (play->p_y - ray->ry) * aTan + play->p_x;
+		ray->yo = 64;
+		ray->xo = -ray->yo * aTan;
+	}
+	cast_common(ray, play, map, 'h');
 }
 
 void	raycasting(t_data *data)
 {
-	db_err_print("START");
-	reset_ray_data(data->ray);
-	cast_h(data->player, data->ray, data->map);
-	cast_v(data->player, data->ray, data->map);
-	if (data->ray->dH == data->ray->dV)
-		printf("SHIT\n");
-	if (data->ray->dH < data->ray->dV)
-	{
-		data->ray->rx = data->ray->h_rx;
-		data->ray->ry = data->ray->h_ry;
-	}
+	data->ray->r = 0;
+	data->ray->ra = data->player->p_ang - deg_to_rad(30);
 	init_map(data);
-	db_show_first_hit(data);
+	while (data->ray->r < 60)
+	{
+		reset_ray_data(data->ray);
+		cast_h(data->player, data->ray, data->map);
+		cast_v(data->player, data->ray, data->map);
+		if (data->ray->dH < data->ray->dV)
+		{
+			data->ray->rx = data->ray->h_rx;
+			data->ray->ry = data->ray->h_ry;
+			data->ray->dRay = data->ray->dH;
+		}
+		else
+			data->ray->dRay = data->ray->dV;
+		db_show_first_hit(data);
+		data->ray->r++;
+		data->ray->ra += deg_to_rad(1);
+		if (data->ray->ra < 0)
+			data->ray->ra += (2*PI);
+		if (data->ray->ra > 2*PI)
+			data->ray->ra -= (2*PI);
+	}
 }

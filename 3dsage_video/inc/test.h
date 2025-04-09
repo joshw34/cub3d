@@ -24,8 +24,8 @@
 # define DN 65364
 # define RT 65363
 
-# define MAPX 1024 
-# define MAPY 512
+# define MAPX 1200 
+# define MAPY 600
 
 # define BLACK 0x000000
 # define WHITE 0xffffff
@@ -33,8 +33,6 @@
 # define RED 0xb92537
 
 # define PI M_PI 
-# define PI2 = M_PI / 2
-# define PI3 = (3 * M_PI) / 2
 
 # define ERROR_1 "Calloc Error: Data Struct\n"
 # define ERROR_2 "Calloc Error: Map Struct\n"
@@ -70,6 +68,7 @@ typedef struct s_ray
 	float	h_ry;
 	float	dH;
 	float	dV;
+	float	dRay;
 	float	ra;
 	float	xo;
 	float	yo;
@@ -104,7 +103,8 @@ typedef struct s_map
 typedef struct s_data
 {
 	void		*init;
-	void		*win;
+	void		*map_win;
+	void		*rc_win;
 	t_map		*map;
 	t_player	*player;
 	t_textures	*textures;
@@ -145,6 +145,7 @@ void	raycasting(t_data *data);
 float	ray_len(t_ray *ray, t_player *play);
 void	found_wall(t_ray *ray, t_player *play, char direction);
 void	map_pixel_to_array(t_ray *ray);
+float	deg_to_rad(int deg);
 void	reset_ray_data(t_ray *ray);
 
 /* debug_funcs.c */

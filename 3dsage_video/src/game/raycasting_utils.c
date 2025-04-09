@@ -45,7 +45,14 @@ void	map_pixel_to_array(t_ray *ray)
 		ray->my = 0;
 	else
 		ray->my = (int)temp;
-	printf("mx: %d\tmy: %d\n", ray->mx, ray->my);
+}
+
+float	deg_to_rad(int deg)
+{
+	float	rad;
+
+	rad = deg * (PI / 180);
+	return (rad);
 }
 
 void	reset_ray_data(t_ray *ray)

@@ -2,15 +2,15 @@
 
 void	db_show_first_hit(t_data *data)
 {
-	mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->rx - 5, data->ray->ry - 5);
+	mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->rx - 5, data->ray->ry - 5);
 }
 
 void	db_show_both_hits(t_data *data)
 {
 	if ((data->ray->h_rx > 0 && data->ray->h_rx < 641) && (data->ray->h_ry > 0 && data->ray->h_ry < 641))
-		mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->h_rx - 5, data->ray->h_ry - 5);
+		mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->h_rx - 5, data->ray->h_ry - 5);
 	if ((data->ray->v_rx > 0 && data->ray->v_rx < 641) && (data->ray->v_ry > 0 && data->ray->v_ry < 641))
-		mlx_put_image_to_window(data->init, data->win, data->ray->y_hit_img, data->ray->v_rx - 5, data->ray->v_ry - 5);
+		mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->v_rx - 5, data->ray->v_ry - 5);
 }
 void	db_print_player_x_y(t_player *player)
 {
@@ -49,7 +49,7 @@ void	db_draw_line(t_data *data, t_player *play)
 	pixel_y = (double)play->p_y;
 	while (n_pixels)
 	{
-		mlx_pixel_put(data->init, data->win, pixel_x, pixel_y, RED);
+		mlx_pixel_put(data->init, data->map_win, pixel_x, pixel_y, RED);
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		n_pixels--;

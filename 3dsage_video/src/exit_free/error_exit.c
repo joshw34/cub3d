@@ -51,8 +51,8 @@ static	void	free_data(t_data *data)
 		free_textures(data);
 	if (data->bg)
 		mlx_destroy_image(data->init, data->bg);
-	if (data->win)
-		mlx_destroy_window(data->init, data->win);
+	if (data->map_win)
+		mlx_destroy_window(data->init, data->map_win);
 	if (data->init)
 	{
 		mlx_destroy_display(data->init);
