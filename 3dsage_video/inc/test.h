@@ -60,6 +60,12 @@ typedef struct s_game
 	void	*game_img;
 	char	*game_addr;
 	int		total_bytes;
+	int		lineH;
+	int		start_x;
+	int		end_x;
+	int		start_y;
+	int		end_y;
+	char	direction;
 	t_data	*data;
 }	t_game;
 
@@ -136,7 +142,7 @@ int		ft_strlen_no_nl(const char *str);
 void	exit_game(t_data *data, bool error, char *msg);
 
 /* images_bg_game.c */
-void	set_walls(t_data *data, int x, int y, int color, char direction);
+void	set_walls(t_data *data, t_game *game, int x);
 void	set_image_data(t_data *data);
 
 /* images_map.c */
@@ -166,7 +172,7 @@ void	reset_ray_data(t_ray *ray);
 /* raycasting_utils_2.c */
 void	set_next_angle(t_ray *ray);
 void	fix_fisheye(t_ray *ray, t_player *player);
-void	find_closest_hit(t_ray *ray);
+void	find_closest_hit(t_ray *ray, t_game *game);
 
 /* debug_funcs.c */
 void	db_show_first_hit(t_data *data);

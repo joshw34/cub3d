@@ -5,39 +5,32 @@
    startx ->endx = width of vertical line 
    starty = offset to centre of window
    direction used to set different colors for horizontal/vertical line. can be removed for textures */
-void	set_walls(t_data *data, int x, int y, int color, char direction)
+void	set_walls(t_data *data, t_game *game, int x)
 {
 	int		*pixel;
-	int		lineH;
-	int		startx;
-	int		endx;
-	int		starty;
-	int		endy;
-	(void)color;
-	(void)y;
 
-	lineH = (64 * WINY) / data->ray->dRay;
-	if (lineH > WINY)
-		lineH = WINY;
-	startx = data->ray->r * (WINX / 60);
-	endx = startx + (WINX / 60);
-	starty = (WINY / 2) - (lineH / 2);
-	endy = starty + lineH;
-	x = startx;
-	while (starty < endy)
+	game->lineH = (64 * WINY) / data->ray->dRay;
+	if (game->lineH > WINY)
+		game->lineH = WINY;
+	game->start_x = data->ray->r * (WINX / 60);
+	game->end_x = game->start_x + (WINX / 60);
+	game->start_y = (WINY / 2) - (game->lineH / 2);
+	game->end_y = game->start_y + game->lineH;
+	x = game->start_x;
+	while (game->start_y < game->end_y)
 	{
-		while (x < endx)
+		while (x < game->end_x)
 		{
-			pixel = (int *)(data->game->game_addr + (starty * data->ln_len + x *
-				(data->bpp / 8)));
-			if (direction == 'v')
+			pixel = (int *)(game->game_addr + (game->start_y * data->ln_len
+				+ x * (data->bpp / 8)));
+			if (game->direction == 'v')
 				*pixel = rgb_color_conversion(data->init, 255, 0, 0);
-			else if (direction == 'h')
+			else if (game->direction == 'h')
 				*pixel = rgb_color_conversion(data->init, 200, 0, 0);
 			x++;
 		}
-		x = startx;
-		starty++;
+		x = game->start_x;
+		game->start_y++;
 	}
 }
 

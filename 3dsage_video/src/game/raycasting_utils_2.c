@@ -24,18 +24,20 @@ void	fix_fisheye(t_ray *ray, t_player *player)
 }
 
 /*Chooses whether the vertical or horizontal hit is closest. rx, ry are now correct, dRay will change in fix_fisheye() */
-void	find_closest_hit(t_ray *ray)
+void	find_closest_hit(t_ray *ray, t_game *game)
 {
 	if (ray->dH < ray->dV)
 	{
 		ray->rx = ray->h_rx;
 		ray->ry = ray->h_ry;
 		ray->dRay = ray->dH;
+		game->direction = 'h';
 	}
 	else
 	{
 		ray->rx = ray->v_rx;
 		ray->ry = ray->v_ry;
 		ray->dRay = ray->dV;
+		game->direction = 'v';
 	}
 }

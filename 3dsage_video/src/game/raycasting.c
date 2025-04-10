@@ -100,13 +100,10 @@ void	raycasting(t_data *data, t_ray *ray, t_player *player, t_game *game)
 		reset_ray_data(ray);
 		cast_h(player, ray, data->map);
 		cast_v(player, ray, data->map);
-		find_closest_hit(ray);
+		find_closest_hit(ray, game);
 		db_show_first_hit(data);
 		fix_fisheye(ray, player);
-		if (ray->dH < ray->dV)
-			set_walls(data, 0, 0, 0, 'h');
-		else
-			set_walls(data, 0, 0, 0, 'v');
+		set_walls(data, game, 0);
 		set_next_angle(ray);
 		ray->r++;
 	}
