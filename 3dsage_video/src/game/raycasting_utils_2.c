@@ -1,5 +1,6 @@
 #include "../../inc/test.h"
 
+/* set the ray ang le for the next raycast loop. correct value if out of bounds */
 void	set_next_angle(t_ray *ray)
 {
 	ray->ra += deg_to_rad(1);
@@ -9,6 +10,7 @@ void	set_next_angle(t_ray *ray)
 		ray->ra -= (2*PI);
 }
 
+/* fixes the fisheye effect caused by the different ray lengths */
 void	fix_fisheye(t_ray *ray, t_player *player)
 {
 	float	corrected_ra;
@@ -21,6 +23,7 @@ void	fix_fisheye(t_ray *ray, t_player *player)
 	ray->dRay = ray->dRay * cos(corrected_ra);
 }
 
+/*Chooses whether the vertical or horizontal hit is closest. rx, ry are now correct, dRay will change in fix_fisheye() */
 void	find_closest_hit(t_ray *ray)
 {
 	if (ray->dH < ray->dV)

@@ -1,13 +1,14 @@
 #include "../../inc/test.h"
 
-/* Will be used to convert rgb values from mapfile */
+/* Will be used to convert rgb values from mapfile. Return values to be stored in
+   textures struct*/
 int	rgb_color_conversion(void *mlx, int r, int g, int b)
 {
 	int color;
 	int	mlx_color;
 
 	color = (r << 16) | (g << 8) | b;
-	mlx_color = mlx_get_color_value(mlx, color) ;
+	mlx_color = mlx_get_color_value(mlx, color);
 	return (mlx_color);
 }
 

@@ -1,5 +1,10 @@
 #include "../../inc/test.h"
 
+/* called from raycasting loop for each vertical line
+   lineH = length of vertical line to draw
+   startx ->endx = width of vertical line 
+   starty = offset to centre of window
+   direction used to set different colors for horizontal/vertical line. can be removed for textures */
 void	set_walls(t_data *data, int x, int y, int color, char direction)
 {
 	int		*pixel;
@@ -26,9 +31,9 @@ void	set_walls(t_data *data, int x, int y, int color, char direction)
 			pixel = (int *)(data->game->game_addr + (starty * data->ln_len + x *
 				(data->bpp / 8)));
 			if (direction == 'v')
-				*pixel = rgb_color_conversion(data->init, 255, 28, 7);
+				*pixel = rgb_color_conversion(data->init, 255, 0, 0);
 			else if (direction == 'h')
-				*pixel = rgb_color_conversion(data->init, 168, 52, 1);
+				*pixel = rgb_color_conversion(data->init, 200, 0, 0);
 			x++;
 		}
 		x = startx;
@@ -36,7 +41,8 @@ void	set_walls(t_data *data, int x, int y, int color, char direction)
 	}
 }
 
-/* get game_img data here so we can memcpy bg_addr->game_addr later */
+/* get game_img data here so we can memcpy bg_addr->game_addr later. This is done last so the
+   bpp, ln_len and endian vars in data struct are set to the correct values for the game image */
 static	void	get_game_img_data(t_data *data, t_game *game)
 {
 	game->game_addr = mlx_get_data_addr(game->game_img, &data->bpp,
@@ -44,6 +50,9 @@ static	void	get_game_img_data(t_data *data, t_game *game)
 	game->total_bytes = data->ln_len * WINY;
 }
 
+/* Static background image. Blue/green currently set manually but will take the colors supplied
+   in the mapfile.  Is not actually put on screen, it is memcpy ->the game image before adding the
+   walls. This means that the game image doesn't have to be cleared for each new frame */
 static	void	set_background_img(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
@@ -69,7 +78,9 @@ static	void	set_background_img(t_data *data, int x, int y, int color)
 	get_game_img_data(data, data->game);
 }
 
-/* Set image buffer data for all images. Needs to be tidied up */
+/* Set image buffer data for all static images. set_walls() is called from the raycasting function
+   As all images share the same bpp, ln_len and endian variables, background needs to be last here
+*/
 void	set_image_data(t_data *data)
 {
 	set_player_img(data, 0, 0);

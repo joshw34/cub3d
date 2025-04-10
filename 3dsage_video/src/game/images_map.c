@@ -1,27 +1,7 @@
 #include "../../inc/test.h"
 
-void	y_wall_hit(t_data *data)
-{
-	char	*addr;
-	int		*pixel;
-	int x = 0;
-	int y = 0;
-
-	addr = mlx_get_data_addr(data->ray->y_hit_img, &data->bpp, &data->ln_len,
-			&data->endian);
-	while (y < 10)
-	{
-		while (x < 10)
-		{
-			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = rgb_color_conversion(data->init, 255, 0, 0);
-			x++;
-		}
-		x = 0;
-		y++;
-	}
-}
-
+/* Draws one cell sent from set_map_img(). Currently set to 64x64. size_x and size_y 
+   -1 to show gridlines in final image, will be removed for final version */
 static	void	set_map2(t_data *data, int x, int y, int color)
 {
 	int		*pixel;
@@ -48,7 +28,8 @@ static	void	set_map2(t_data *data, int x, int y, int color)
 	}
 }
 
-/* Cycle through map array, send x + y pixel for top-left corner of each tile */
+/* Cycle through map array, send x + y pixel for top-left corner of each tile
+   Currently sets each tile as 64x64 pixels, needs to be smaller and dynamically assigned */
 void	set_map_img(t_data *data)
 {
 	char	**map;
@@ -72,6 +53,8 @@ void	set_map_img(t_data *data)
 	}
 }
 
+/* Red square for player location. Currently set to 10x10 pixel. Actual player location is
+   top-left corner of square */
 void	set_player_img(t_data *data, int x, int y)
 {
 	char	*addr;

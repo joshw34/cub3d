@@ -1,5 +1,6 @@
 #include "../inc/test.h"
 
+/* Everything needed to draw the final 3d image */
 void	init_game_struct(t_data *data)
 {
 	data->game = ft_calloc(1, sizeof(t_game));
@@ -8,6 +9,7 @@ void	init_game_struct(t_data *data)
 	data->game->data = data;
 }
 
+/* All variables necessary for raycasting. */
 void	init_ray_struct(t_data *data)
 {
 	data->ray = ft_calloc(1, sizeof(t_ray));
@@ -16,6 +18,7 @@ void	init_ray_struct(t_data *data)
 	data->ray->data = data;
 }
 
+/* texture files to be taken from mapfile. floor / ceiling colours may go here */
 void	init_texture_struct(t_data *data)
 {
 	data->textures = ft_calloc(1, sizeof(t_textures));
@@ -23,6 +26,7 @@ void	init_texture_struct(t_data *data)
 		exit_game(data, true, ERROR_6);
 }
 
+/* Player position set manually, needs to taken from mapfile */
 void	init_player_struct(t_data *data)
 {
 	data->player = ft_calloc(1, sizeof(t_player));
@@ -57,10 +61,9 @@ t_data	*init_structs(char	*map_file)
 	return (data);
 }
 
-/* Data split in to multiple structs to keep tidy, may need to reorganise later */
+/* Data split in to multiple structs to keep tidy, need to reorganise later */
 int	main(int ac, char **av)
 {
-	printf("%f\n", PI);
 	t_data	*data;
 	if (ac != 2)
 		exit(EXIT_FAILURE);

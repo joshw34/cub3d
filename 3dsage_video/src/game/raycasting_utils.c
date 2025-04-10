@@ -8,6 +8,7 @@ float	ray_len(t_ray *ray, t_player *play)
 	return (len);
 }
 
+/* if a wall was found we save the x and y location for either vertical or horizontal and dof to max to stop further searching */
 void	found_wall(t_ray *ray, t_player *play, char direction)
 {
 	if (direction == 'v')
@@ -25,6 +26,8 @@ void	found_wall(t_ray *ray, t_player *play, char direction)
 	ray->dof = 20;
 }
 
+/* for every rx and ry we calculate the array coordiante from the pixel location. if the pixel
+   is outside the screen, we set the array coord to -1 to prevent checking the array and segfaulting */
 void	map_pixel_to_array(t_ray *ray)
 {
 	float	temp;
@@ -55,6 +58,9 @@ float	deg_to_rad(int deg)
 	return (rad);
 }
 
+/* resets the values in ray struct for each of the 60 rays
+   distances set to int max to ensure real hits wil be lower
+   others set to -1 to ensure that no array checking is done if a wall isnt found */
 void	reset_ray_data(t_ray *ray)
 {
 	ray->dH = 2147483647.0;

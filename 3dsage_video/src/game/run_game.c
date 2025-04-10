@@ -1,6 +1,6 @@
 #include "../../inc/test.h"
 
-/* Initialse all images then redraw in loop */
+/* Initialise all images then redraw in loop after every keypress */
 void	init_map(t_data *data)
 {
 	mlx_put_image_to_window(data->init, data->map_win, data->map->m_img, 0, 0);
@@ -9,8 +9,9 @@ void	init_map(t_data *data)
 	mlx_put_image_to_window(data->init, data->rc_win, data->game->game_img, 0, 0);
 }
 
-/* Create mlx, window and image pointers*/
-/* Player start angle set here for now */
+/* Create mlx, window and image pointers.
+ * Map window to be removed later and map image put on game window.
+   Player start angle set here for now, will be taken from mapfile during parsing */
 static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 {
 	data->init = mlx_init();

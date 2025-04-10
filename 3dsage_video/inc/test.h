@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-//# include "/home/jwhitley/.local/mlx/mlx.h" 
-# include <mlx.h>
+# include "/home/jwhitley/.local/mlx/mlx.h" 
+//# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -22,8 +22,8 @@
 # define LT 65361
 # define RT 65363
 
-# define WINX 600 
-# define WINY 300
+# define WINX 1200 
+# define WINY 600
 
 # define BLACK 0x000000
 # define WHITE 0xffffff

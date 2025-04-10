@@ -1,7 +1,7 @@
 #include "../../inc/test.h"
 
 /* Radians = 0 -> 2PI. Reset angle to 2PI when reaching zero as negative is invalid*/
-/* See pdx_pdy diagram */
+/* p_dx and p_dy = amount of movement for one key press. See pdx_pdy diagram */
 static	void	look(int key, t_player *play)
 {
 	if (key == RT)
@@ -47,6 +47,7 @@ static	void	move(int key, t_player *play)
 	}
 }
 
+/* After processing each keypress, raycasting is done for the new location / view angle */
 int	key(int keysym, t_data *data)
 {
 	if (keysym == LT || keysym == RT)
@@ -59,7 +60,7 @@ int	key(int keysym, t_data *data)
 	return (0);
 }
 
-/* This can probably be removed and init_map() called directly */
+/* This can probably be removed and init_map() called directly in the hook from run_game() */
 int	expose_win(t_data *data)
 {
 	init_map(data);

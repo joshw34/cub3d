@@ -1,5 +1,4 @@
 #include "../../inc/test.h"
-#include "mlx.h"
 
 void	free_array(char **array)
 {
@@ -73,8 +72,8 @@ static	void	free_data(t_data *data)
 	free(data);
 }
 
-/* Used for normal and error exits, free all data, if error = true, prints Error: before message to stderr,
-   prints msg to stdout if no error*/
+/* Used for normal and error exits, free all data. If error = true, print "Error:" & message to stderr.
+   No error: prints msg to stdout */
 void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)

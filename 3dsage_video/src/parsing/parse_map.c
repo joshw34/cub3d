@@ -38,7 +38,8 @@ static	bool	allocate_map_array(t_map *map)
 	return (true);
 }
 
-/* Calculate number of lines and length of longest line, calculate size of minimap */
+/* Calculate number of lines and length of longest line, calculate size of minimap.
+   Minimap cells set to 64x64, this needs to be scaled down */
 static	bool	get_line_data(t_map *map)
 {
 	char	*line;
