@@ -59,7 +59,8 @@ static	bool	set_tex_file(char *line, t_tex *tex, char **file)
 	if (*file)
 		exit_game(tex->data, true, ERROR_9);
 	*file = ft_strdup(line + 3);
-	if (access(*file, F_OK) != 0 || access(*file, R_OK))
+	ft_printf("%s\n", *file);
+	if (access(*file, F_OK) != 0 || access(*file, R_OK) != 0)
 		exit_game(tex->data, true, ERROR_10);
 	return (true);
 }
@@ -85,12 +86,16 @@ void	get_textures(t_map *map, t_tex *tex, int *line_n)
 {
 	int		count;
 	char	*line;
+	int		line_len;
 	
 	line = get_next_line(map->fd);
 	count = 0;
 	while (line)
 	{
 		(*line_n)++;
+		line_len = ft_strlen(line);
+		if (line[line_len - 1] == '\n')
+			line[line_len - 1] = '\0';
 		if (check_line(line, tex))
 			count++;
 		free(line);
