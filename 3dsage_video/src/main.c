@@ -56,6 +56,7 @@ t_data	*init_structs(char	*map_file)
 	data = ft_calloc(1, sizeof(t_data));
 	if (!data)
 		exit_game(data, true, ERROR_1);
+	data->init = mlx_init();
 	init_map_struct(data, map_file);
 	init_player_struct(data);
 	init_texture_struct(data);

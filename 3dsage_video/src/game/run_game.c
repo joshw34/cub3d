@@ -14,7 +14,7 @@ void	init_map(t_data *data)
    Player start angle set here for now, will be taken from mapfile during parsing */
 static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 {
-	data->init = mlx_init();
+	//data->init = mlx_init();
 	data->map_win = mlx_new_window(data->init, map->size_x, map->size_y, "minimap");
 	data->rc_win = mlx_new_window(data->init, WINX, WINY, "cub3d");
 	data->game->bg_img = mlx_new_image(data->init, WINX, WINY);
