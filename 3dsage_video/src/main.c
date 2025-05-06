@@ -21,9 +21,12 @@ void	init_ray_struct(t_data *data)
 /* texture files to be taken from mapfile. floor / ceiling colours may go here */
 void	init_texture_struct(t_data *data)
 {
-	data->textures = ft_calloc(1, sizeof(t_textures));
-	if (!data->textures)
+	data->tex = ft_calloc(1, sizeof(t_tex));
+	if (!data->tex)
 		exit_game(data, true, ERROR_6);
+	data->tex->data = data;
+	data->tex->F = -1;
+	data->tex->C = -1;
 }
 
 /* Player position set manually, needs to taken from mapfile */
@@ -68,7 +71,7 @@ int	main(int ac, char **av)
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	data = init_structs(av[1]);
-	parse_map(data);
-	run_game(data);
+	parsing(data, data->map);
+	//run_game(data);
 	exit_game(data, false, NULL);
 }

@@ -24,15 +24,15 @@ static	void	free_game(t_data *data)
 
 static	void	free_textures(t_data *data)
 {
-	if (data->textures->NO)
-		free(data->textures->NO);
-	if (data->textures->SO)
-		free(data->textures->SO);
-	if (data->textures->EA)
-		free(data->textures->EA);
-	if (data->textures->WE)
-		free(data->textures->WE);
-	free(data->textures);
+	if (data->tex->NO)
+		free(data->tex->NO);
+	if (data->tex->SO)
+		free(data->tex->SO);
+	if (data->tex->EA)
+		free(data->tex->EA);
+	if (data->tex->WE)
+		free(data->tex->WE);
+	free(data->tex);
 }
 
 static	void	free_map_player_ray(t_data *data)
@@ -41,13 +41,16 @@ static	void	free_map_player_ray(t_data *data)
 		free_array(data->map->map);
 	if (data->map->m_img)
 		mlx_destroy_image(data->init, data->map->m_img);
+	if (data->map->fd >= 0)
+		close(data->map->fd);
 	free(data->map);
 	if (data->player->p_img)
 		mlx_destroy_image(data->init, data->player->p_img);
 	free(data->player);
 	if (data->ray)
 	{
-		mlx_destroy_image(data->init, data->ray->y_hit_img);
+		if (data->ray->y_hit_img)
+			mlx_destroy_image(data->init, data->ray->y_hit_img);
 		free(data->ray);
 	}
 }
@@ -56,7 +59,7 @@ static	void	free_data(t_data *data)
 {
 	if (data->map || data->player || data->ray)
 		free_map_player_ray(data);
-	if (data->textures)
+	if (data->tex)
 		free_textures(data);
 	if (data->game)
 		free_game(data);

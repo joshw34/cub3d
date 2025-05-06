@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-# include "/home/jwhitley/.local/mlx/mlx.h" 
-//# include <mlx.h>
+//# include "/home/jwhitley/.local/mlx/mlx.h" 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -32,14 +32,19 @@
 
 # define PI M_PI 
 
-# define ERROR_1 "Calloc Error: Data Struct\n"
-# define ERROR_2 "Calloc Error: Map Struct\n"
+# define ERROR_1 "Calloc: Data Struct\n"
+# define ERROR_2 "Calloc: Map Struct\n"
 # define ERROR_3 "Couldn't open mapfile\n"
-# define ERROR_4 "Calloc Error: Map Array\n"
-# define ERROR_5 "Strdup Error: Map Array\n"
-# define ERROR_6 "Calloc Error: Texture Struct\n"
-# define ERROR_7 "Calloc Error: Ray Struct\n"
-# define ERROR_8 "Calloc Error: Game Struct\n"
+# define ERROR_4 "Calloc: Map Array\n"
+# define ERROR_5 "Strdup: Map Array\n"
+# define ERROR_6 "Calloc: Texture Struct\n"
+# define ERROR_7 "Calloc: Ray Struct\n"
+# define ERROR_8 "Calloc: Game Struct\n"
+# define ERROR_9 "Multiple Definitions of a texture in mapfile\n"
+# define ERROR_10 "Couldnt open texture file\n"
+# define ERROR_11 "Multiple Definitions of color in mapfile\n"
+# define ERROR_12 "Invalid color value in mapfile\n"
+# define ERROR_13 "Required textures/colors not found in mapfile\n"
 
 typedef struct  s_data t_data;
 
@@ -49,9 +54,10 @@ typedef struct s_textures
 	char	*SO;
 	char	*WE;
 	char	*EA;
-	int		floor;
-	int		ceiling;
-}	t_textures;
+	int		F;
+	int		C;
+	t_data	*data;
+}	t_tex;
 
 typedef struct s_game
 {
@@ -122,7 +128,7 @@ typedef struct s_data
 	void		*rc_win;
 	t_map		*map;
 	t_player	*player;
-	t_textures	*textures;
+	t_tex		*tex;
 	t_ray		*ray;
 	t_game		*game;
 	int			bpp;
@@ -130,15 +136,23 @@ typedef struct s_data
 	int			endian;
 }	t_data;
 
-/* parse_map.c */
-void	parse_map(t_data *data);
+/* parsing.c */
+void	parsing(t_data *data, t_map *map);
+
+/* get_textures.c */
+void	get_textures(t_map *map, t_tex *tex, int *map_start);
+
+/* get_map.c */
+void	get_map(t_map *map, int line_n);
 
 /* parsing_utils.c */
 int		rgb_color_conversion(void *mlx, int r, int g, int b);
 bool	open_mapfile(t_map *map);
+void	close_mapfile(t_map *map);
 int		ft_strlen_no_nl(const char *str);
 
 /* error_exit.c */
+void	free_array(char **array);
 void	exit_game(t_data *data, bool error, char *msg);
 
 /* images_bg_game.c */
@@ -182,5 +196,6 @@ void	db_draw_line(t_data *data, t_player *play);
 void	db_print_pdx_pdy(t_player *p);
 void	db_err_print(char *str);
 void	db_print_map_info(t_data *data, bool add_spaces);
+void	db_print_tex_info(t_tex *tex);
 
 #endif

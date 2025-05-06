@@ -121,3 +121,13 @@ void	db_print_map_info(t_data *data, bool add_spaces)
 	if (data->map->map_file)
 		db_print_map_array(data, add_spaces);
 }
+
+void	db_print_tex_info(t_tex *tex)
+{
+	ft_printf("NO: %s\n", tex->NO);
+	ft_printf("SO: %s\n", tex->SO);
+	ft_printf("EA: %s\n", tex->EA);
+	ft_printf("WE: %s\n", tex->WE);
+	ft_printf("C: %d\n", tex->C);
+	ft_printf("F: %d\n", tex->F);
+}

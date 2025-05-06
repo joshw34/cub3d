@@ -7,15 +7,15 @@ GAME_SRC_DIR = ./src/game
 
 INC_DIR = ./inc
 LIBFT_DIR = ./libft
-MLX_DIR = /home/jwhitley/.local/mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBMLX = $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -lXext -lX11
+MLX_FLAGS = -lmlx -lXext -lX11
 
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(SRC_DIR)/debug_funcs.c \
-			$(PARSING_SRC_DIR)/parse_map.c \
+			$(PARSING_SRC_DIR)/parsing.c \
+			$(PARSING_SRC_DIR)/get_textures.c \
+			$(PARSING_SRC_DIR)/get_map.c \
 			$(PARSING_SRC_DIR)/parsing_utils.c \
 			$(EXIT_FREE_SRC_DIR)/error_exit.c \
 			$(GAME_SRC_DIR)/image_bg_game.c \
@@ -36,7 +36,7 @@ all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@echo "$(NAME): Linking"
-	@$(CC) $(OBJ_FILES) $(LIBFT) $(LIBMLX) $(MLX_FLAGS) -lm -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -lm -o $(NAME)
 	@echo "$(NAME): Ready"
 
 $(LIBFT):

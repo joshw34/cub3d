@@ -20,6 +20,12 @@ bool	open_mapfile(t_map *map)
 	return (true);
 }
 
+void	close_mapfile(t_map *map)
+{
+	close(map->fd);
+	map->fd = -1;
+}
+
 /* Calculate length of map lines, not counting \n which will be removed later */
 int	ft_strlen_no_nl(const char *str)
 {
