@@ -39,10 +39,8 @@ void	close_mapfile(t_map *map)
 void	parsing(t_data *data, t_map *map)
 {
 	int total_lines;
-	int	map_lines;
 
 	total_lines = 0;
-	map_lines = 0;
 	if (!open_mapfile(map))
 		exit_game(data, true, ERROR_3);
 	get_textures(map, data->tex, &total_lines);
