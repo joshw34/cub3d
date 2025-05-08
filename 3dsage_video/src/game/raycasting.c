@@ -93,18 +93,18 @@ void	raycasting(t_data *data, t_ray *ray, t_player *player, t_game *game)
 {
 	ray->r = 0;
 	ray->ra = player->p_ang - deg_to_rad(30);
-	init_map(data);
 	ft_memcpy(game->game_addr, game->bg_addr, game->total_bytes);
-	while (ray->r < 60)
+	while (ray->r < 1200)
 	{
 		reset_ray_data(ray);
 		cast_h(player, ray, data->map);
 		cast_v(player, ray, data->map);
 		find_closest_hit(ray, game);
-		db_show_first_hit(data);
+		//db_show_first_hit(data);
 		fix_fisheye(ray, player);
-		set_walls(data, game, 0);
+		set_walls(data, game, ray->r);
 		set_next_angle(ray);
 		ray->r++;
 	}
+	init_map(data);
 }

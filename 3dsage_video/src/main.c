@@ -73,6 +73,6 @@ int	main(int ac, char **av)
 		exit(EXIT_FAILURE);
 	data = init_structs(av[1]);
 	parsing(data, data->map);
-	//run_game(data);
+	run_game(data);
 	exit_game(data, false, NULL);
 }

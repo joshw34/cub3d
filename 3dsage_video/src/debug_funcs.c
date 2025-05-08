@@ -49,7 +49,7 @@ void	db_draw_line(t_data *data, t_player *play)
 	pixel_y = (double)play->p_y;
 	while (n_pixels)
 	{
-		mlx_pixel_put(data->init, data->map_win, pixel_x, pixel_y, RED);
+		mlx_pixel_put(data->init, data->map_win, pixel_x, pixel_y, rgb_color_conversion(data->init, 255, 0, 0));
 		pixel_x += delta_x;
 		pixel_y += delta_y;
 		n_pixels--;

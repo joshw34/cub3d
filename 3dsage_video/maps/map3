@@ -1,9 +1,9 @@
-NO /home/joshw/Work/cub3d/3dsage_video/textures/north
-SO /home/joshw/Work/cub3d/3dsage_video/textures/south
-WE /home/joshw/Work/cub3d/3dsage_video/textures/west
-EA /home/joshw/Work/cub3d/3dsage_video/textures/east
-C 125,23,1
-F 255,0,59
+NO ./textures/north
+SO ./textures/south
+WE ./textures/west
+EA ./textures/east
+C 0,0,255
+F 0,255,0
 1111111111
 1111000001
 1110000011

@@ -2,8 +2,8 @@
 # define TEST_H
 
 # include "../libft/libft.h"
-//# include "/home/jwhitley/.local/mlx/mlx.h" 
-# include <mlx.h>
+# include "/home/jwhitley/.local/mlx/mlx.h" 
+//# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -22,13 +22,8 @@
 # define LT 65361
 # define RT 65363
 
-# define WINX 1200 
-# define WINY 600
-
-# define BLACK 0x000000
-# define WHITE 0xffffff
-# define GREEN 0x008000
-# define RED 0xb92537
+# define WINX 1200
+# define WINY 720
 
 # define PI M_PI 
 
@@ -67,8 +62,6 @@ typedef struct s_game
 	char	*game_addr;
 	int		total_bytes;
 	int		lineH;
-	int		start_x;
-	int		end_x;
 	int		start_y;
 	int		end_y;
 	char	direction;
@@ -89,8 +82,8 @@ typedef struct s_ray
 	float	h_ry;
 	float	dH;
 	float	dV;
-	float	dRay;
-	float	ra;
+	double	dRay;
+	double	ra;
 	float	xo;
 	float	yo;
 	void	*y_hit_img;
@@ -157,6 +150,7 @@ void	exit_game(t_data *data, bool error, char *msg);
 
 /* images_bg_game.c */
 void	set_walls(t_data *data, t_game *game, int x);
+void	get_game_img_data(t_data *data, t_game *game);
 void	set_image_data(t_data *data);
 
 /* images_map.c */

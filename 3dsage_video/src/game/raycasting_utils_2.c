@@ -3,7 +3,11 @@
 /* set the ray ang le for the next raycast loop. correct value if out of bounds */
 void	set_next_angle(t_ray *ray)
 {
-	ray->ra += deg_to_rad(1);
+	//ray->ra += deg_to_rad(1);
+	//ray->ra += 0.00872665; //0.5 deg
+	//ray->ra += 0.004363323; //0.25 deg
+	//ray->ra += 0.0021816616; //0.125 deg
+	ray->ra += 0.0008726646; // 0.05 deg
 	if (ray->ra < 0)
 		ray->ra += (2*PI);
 	if (ray->ra > 2*PI)

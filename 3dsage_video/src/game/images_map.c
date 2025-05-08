@@ -44,9 +44,9 @@ void	set_map_img(t_data *data)
 		while (map[i][j])
 		{
 			if (map[i][j] == '0')
-				set_map2(data, j * 64, i * 64, WHITE);
+				set_map2(data, j * 64, i * 64, rgb_color_conversion(data->init, 255, 255, 255));
 			else if (map[i][j] == '1')
-				set_map2(data, j * 64, i * 64, GREEN);
+				set_map2(data, j * 64, i * 64, rgb_color_conversion(data->init, 0, 255, 0));
 			j++;
 		}
 		i++;
@@ -67,7 +67,7 @@ void	set_player_img(t_data *data, int x, int y)
 		while (x < 10)
 		{
 			pixel = (int *)(addr + (y * data->ln_len + x * (data->bpp / 8)));
-			*pixel = RED;
+			*pixel = rgb_color_conversion(data->init, 255, 0, 0);
 			x++;
 		}
 		x = 0;
