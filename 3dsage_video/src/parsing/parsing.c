@@ -22,8 +22,8 @@ void	parsing(t_data *data, t_map *map)
 	map->map[10] = NULL;
 	map->len = 10;
 	map->lines = 10;
-	map->size_x = map->len * 64;
-	map->size_y = map->lines * 64;
+	map->size_x = map->len * 10;
+	map->size_y = map->lines * 10;
 	close_mapfile(map);
 	db_print_tex_info(data->tex);
 }

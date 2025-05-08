@@ -7,6 +7,7 @@ void	init_map(t_data *data)
 	//mlx_put_image_to_window(data->init, data->map_win, data->player->p_img, data->player->p_x, data->player->p_y);
 	//db_draw_line(data, data->player);
 	mlx_put_image_to_window(data->init, data->rc_win, data->game->game_img, 0, 0);
+	mlx_put_image_to_window(data->init, data->rc_win, data->map->m_img, 10, 10);
 }
 
 /* Create mlx, window and image pointers.
@@ -19,7 +20,7 @@ static void	init_mlx_data(t_data *data, t_player *player, t_map *map)
 	data->rc_win = mlx_new_window(data->init, WINX, WINY, "cub3d");
 	data->game->bg_img = mlx_new_image(data->init, WINX, WINY);
 	data->game->game_img = mlx_new_image(data->init, WINX, WINY);
-	//data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
+	data->map->m_img = mlx_new_image(data->init, map->size_x, map->size_y);
 	//data->player->p_img = mlx_new_image(data->init, 10, 10);
 	//data->ray->y_hit_img = mlx_new_image(data->init, 10, 10);
 	data->player->p_ang =  PI * 2;
