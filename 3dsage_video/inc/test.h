@@ -39,7 +39,9 @@
 # define ERROR_10 "Couldnt open texture file\n"
 # define ERROR_11 "Multiple Definitions of color in mapfile\n"
 # define ERROR_12 "Invalid color value in mapfile\n"
-# define ERROR_13 "Required textures/colors not found in mapfile\n"
+# define ERROR_13 "Invalid data (above) in mapfile\n"
+# define ERROR_14 "Required textures/colors not found in mapfile\n"
+# define ERROR_15 "No map found / map data not at end of mapfile\n"
 
 typedef struct  s_data t_data;
 
@@ -130,19 +132,17 @@ typedef struct s_data
 }	t_data;
 
 /* parsing.c */
+bool	is_junk_line(char *line);
+int		rgb_color_conversion(void *mlx, int r, int g, int b);
+bool	open_mapfile(t_map *map);
+void	close_mapfile(t_map *map);
 void	parsing(t_data *data, t_map *map);
 
 /* get_textures.c */
 void	get_textures(t_map *map, t_tex *tex, int *map_start);
 
 /* get_map.c */
-void	get_map(t_map *map, int line_n);
-
-/* parsing_utils.c */
-int		rgb_color_conversion(void *mlx, int r, int g, int b);
-bool	open_mapfile(t_map *map);
-void	close_mapfile(t_map *map);
-int		ft_strlen_no_nl(const char *str);
+void	get_map(t_map *map, int *total_lines);
 
 /* error_exit.c */
 void	free_array(char **array);

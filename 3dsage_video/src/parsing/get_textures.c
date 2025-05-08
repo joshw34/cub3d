@@ -59,7 +59,6 @@ static	bool	set_tex_file(char *line, t_tex *tex, char **file)
 	if (*file)
 		exit_game(tex->data, true, ERROR_9);
 	*file = ft_strdup(line + 3);
-	ft_printf("%s\n", *file);
 	if (access(*file, F_OK) != 0 || access(*file, R_OK) != 0)
 		exit_game(tex->data, true, ERROR_10);
 	return (true);
@@ -79,10 +78,18 @@ static	bool	check_line(char *line, t_tex *tex)
 		return (set_color(line, tex, 'C'));
 	if (ft_strncmp(line, "F ", 2) == 0)
 		return (set_color(line, tex, 'F'));
+	else
+	{
+		if (ft_strlen(line) > 0 && is_junk_line(line))
+		{
+			printf("%s\n", line);
+			exit_game(tex->data, true, ERROR_13);
+		}
+	};
 	return (false);
 }
 
-void	get_textures(t_map *map, t_tex *tex, int *line_n)
+void	get_textures(t_map *map, t_tex *tex, int *total_lines)
 {
 	int		count;
 	char	*line;
@@ -92,7 +99,7 @@ void	get_textures(t_map *map, t_tex *tex, int *line_n)
 	count = 0;
 	while (line)
 	{
-		(*line_n)++;
+		(*total_lines)++;
 		line_len = ft_strlen(line);
 		if (line[line_len - 1] == '\n')
 			line[line_len - 1] = '\0';
@@ -104,5 +111,5 @@ void	get_textures(t_map *map, t_tex *tex, int *line_n)
 		line = get_next_line(map->fd);
 	}
 	if (count != 6)
-		exit_game(map->data, true, ERROR_13);
+		exit_game(map->data, true, ERROR_14);
 }

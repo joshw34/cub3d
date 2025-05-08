@@ -1,29 +1,51 @@
 #include "../../inc/test.h"
+
+bool	is_junk_line(char	*line)
+{
+	int	i;
+
+	i = 0;
+	while (line[i] == ' ')
+			i++;
+	if (line[i] != '1')
+		return (true);
+	return (false);
+}
+
+int	rgb_color_conversion(void *mlx, int r, int g, int b)
+{
+	int color;
+	int	mlx_color;
+
+	color = (r << 16) | (g << 8) | b;
+	mlx_color = mlx_get_color_value(mlx, color);
+	return (mlx_color);
+}
+
+bool	open_mapfile(t_map *map)
+{
+	map->fd = open(map->map_file, O_RDONLY);
+	if (map->fd == -1)
+		return (false);
+	return (true);
+}
+
+void	close_mapfile(t_map *map)
+{
+	close(map->fd);
+	map->fd = -1;
+}
+
 void	parsing(t_data *data, t_map *map)
 {
-	int line_n;
+	int total_lines;
+	int	map_lines;
 
-	line_n = 0;
+	total_lines = 0;
+	map_lines = 0;
 	if (!open_mapfile(map))
 		exit_game(data, true, ERROR_3);
-	get_textures(map, data->tex, &line_n);
-	//get_map(map, line_n);
-	map->map = ft_calloc(11, sizeof(char *));
-	map->map[0] = ft_strdup("1111111111");
-	map->map[1] = ft_strdup("1000000001");
-	map->map[2] = ft_strdup("1001001001");
-	map->map[3] = ft_strdup("1000001001");
-	map->map[4] = ft_strdup("1000001001");
-	map->map[5] = ft_strdup("1000010001");
-	map->map[6] = ft_strdup("1000100001");
-	map->map[7] = ft_strdup("1010000001");
-	map->map[8] = ft_strdup("1000000001");
-	map->map[9] = ft_strdup("1111111111");
-	map->map[10] = NULL;
-	map->len = 10;
-	map->lines = 10;
-	map->size_x = map->len * 10;
-	map->size_y = map->lines * 10;
-	close_mapfile(map);
-	db_print_tex_info(data->tex);
+	get_textures(map, data->tex, &total_lines);
+	get_map(map, &total_lines);
+	//VALIDATE MAP
 }
