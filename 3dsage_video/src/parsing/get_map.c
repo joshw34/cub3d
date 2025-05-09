@@ -1,5 +1,29 @@
 #include "../../inc/test.h"
 
+static	void	remove_map_nl(t_map *map)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	while (map->map[i])
+	{
+		len = ft_strlen(map->map[i]);
+		printf("lenbefore: %d\n", len);
+		if (map->map[i][len - 1] == '\n')
+		{
+			printf("NEWLINE\n");
+			map->map[i][len -1] = '\0';
+		}
+
+		len = ft_strlen(map->map[i]);
+		printf("lenafter: %d\n", len);
+		if (len > map->len)
+			map->len = len;
+		i++;
+	}
+}
+
 static	void	copy_map(t_map *map, int total_lines)
 {
 	int		i;
@@ -24,6 +48,7 @@ static	void	copy_map(t_map *map, int total_lines)
 		i++;
 	}
 	map->map[i] = NULL;
+	close_mapfile(map);
 }
 
 static	bool	is_valid_map_line(t_map *map, char *line)
@@ -56,8 +81,6 @@ static	void	count_map_lines(t_map *map, int *total_lines)
 	while(line)
 	{
 		line_len = ft_strlen(line);
-		if (line_len > map->len)
-			map->len = line_len;
 		if (line[line_len - 1] == '\n')
 			line[line_len - 1] = '\0';
 		if (line[0] == '\0')
@@ -82,7 +105,7 @@ void	get_map(t_map *map, int *total_lines)
 		exit_game(map->data, true, ERROR_3);
 	map->map = ft_calloc(map->lines + 1, sizeof(char *));
 	copy_map(map, *total_lines);
-	close_mapfile(map);
+	remove_map_nl(map);
 	map->size_x = map->len * 10;
 	map->size_y = map->lines * 10;
 }

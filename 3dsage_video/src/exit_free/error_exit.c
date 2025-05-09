@@ -83,7 +83,7 @@ void	exit_game(t_data *data, bool error, char *msg)
 		free_data(data);
 	if (error == true)
 	{
-		ft_putstr_fd("Error: ", STDERR_FILENO);
+		ft_putstr_fd("Error\n", STDERR_FILENO);
 		ft_putstr_fd(msg, STDERR_FILENO);
 		ft_putstr_fd("\n", STDERR_FILENO);
 		exit(EXIT_FAILURE);

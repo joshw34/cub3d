@@ -42,6 +42,9 @@
 # define ERROR_13 "Invalid data (above) in mapfile\n"
 # define ERROR_14 "Required textures/colors not found in mapfile\n"
 # define ERROR_15 "No map found / map data not at end of mapfile\n"
+# define ERROR_16 "No player start position found\n"
+# define ERROR_17 "More than one player start position found\n"
+# define ERROR_18 "Calloc: map copy\n"
 
 typedef struct  s_data t_data;
 
@@ -143,6 +146,9 @@ void	get_textures(t_map *map, t_tex *tex, int *map_start);
 
 /* get_map.c */
 void	get_map(t_map *map, int *total_lines);
+
+/* validate_map.c */
+void	validate_map(t_map *map);
 
 /* error_exit.c */
 void	free_array(char **array);
