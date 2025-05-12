@@ -24,14 +24,14 @@ static	void	free_game(t_data *data)
 
 static	void	free_textures(t_data *data)
 {
-	if (data->tex->NO)
-		free(data->tex->NO);
-	if (data->tex->SO)
-		free(data->tex->SO);
-	if (data->tex->EA)
-		free(data->tex->EA);
-	if (data->tex->WE)
-		free(data->tex->WE);
+	if (data->tex->no)
+		free(data->tex->no);
+	if (data->tex->so)
+		free(data->tex->so);
+	if (data->tex->ea)
+		free(data->tex->ea);
+	if (data->tex->we)
+		free(data->tex->we);
 	free(data->tex);
 }
 

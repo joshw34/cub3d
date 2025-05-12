@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   test.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/12 14:55:41 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/12 14:58:37 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef TEST_H
 # define TEST_H
 
 # include "../libft/libft.h"
-//# include "/home/jwhitley/.local/mlx/mlx.h" 
-# include <mlx.h>
+# include "/home/jwhitley/.local/mlx/mlx.h" 
+//# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -44,16 +56,31 @@
 # define ERROR_15 "No map found / map data not at end of mapfile\n"
 # define ERROR_16 "No player start position found\n"
 # define ERROR_17 "More than one player start position found\n"
-# define ERROR_18 "Calloc: map copy\n"
+# define ERROR_18 "Calloc: Map Validation: map_copy array\n"
+# define ERROR_19 "Calloc: Map Validation: checked / cell array\n"
+# define ERROR_20 "Map not surrounded by walls\n"
 
-typedef struct  s_data t_data;
+typedef struct s_data	t_data;
+
+typedef struct s_cell
+{
+	int		y;
+	int		x;
+	int		ny;
+	int		nx;
+	int		dy[4];
+	int		dx[4];
+	int		i;
+	char	**m_cp;
+	bool	**checked;
+}	t_cell;
 
 typedef struct s_textures
 {
-	char	*NO;
-	char	*SO;
-	char	*WE;
-	char	*EA;
+	char	*no;
+	char	*so;
+	char	*we;
+	char	*ea;
 	int		F;
 	int		C;
 	t_data	*data;
@@ -149,6 +176,9 @@ void	get_map(t_map *map, int *total_lines);
 
 /* validate_map.c */
 void	validate_map(t_map *map);
+
+/* validate_map_walls.c */
+void	validate_map_walls(t_map *map, char **map_copy);
 
 /* error_exit.c */
 void	free_array(char **array);

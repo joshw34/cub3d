@@ -9,15 +9,9 @@ static	void	remove_map_nl(t_map *map)
 	while (map->map[i])
 	{
 		len = ft_strlen(map->map[i]);
-		printf("lenbefore: %d\n", len);
 		if (map->map[i][len - 1] == '\n')
-		{
-			printf("NEWLINE\n");
 			map->map[i][len -1] = '\0';
-		}
-
 		len = ft_strlen(map->map[i]);
-		printf("lenafter: %d\n", len);
 		if (len > map->len)
 			map->len = len;
 		i++;

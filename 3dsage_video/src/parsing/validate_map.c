@@ -38,7 +38,6 @@ static	char	**copy_map(t_map *map)
 		}
 		ft_memset(copy[i], ' ', map->len + 3);
 		copy[i][map->len + 2] = '\0';
-		printf("row %d: *%s*\n", i, copy[i]);
 		i++;
 	}
 	copy[i] = NULL;
@@ -91,4 +90,5 @@ void	validate_map(t_map *map)
 	char	**map_copy;
 	check_map_content(map, map->map);
 	map_copy = copy_map(map);
+	validate_map_walls(map, map_copy);
 }

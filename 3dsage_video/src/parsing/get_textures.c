@@ -67,13 +67,13 @@ static	bool	set_tex_file(char *line, t_tex *tex, char **file)
 static	bool	check_line(char *line, t_tex *tex)
 {
 	if (ft_strncmp(line, "NO ", 3) == 0)
-		return (set_tex_file(line, tex, &tex->NO));
+		return (set_tex_file(line, tex, &tex->no));
 	if (ft_strncmp(line, "SO ", 3) == 0)
-		return (set_tex_file(line, tex, &tex->SO));
+		return (set_tex_file(line, tex, &tex->so));
 	if (ft_strncmp(line, "WE ", 3) == 0)
-		return (set_tex_file(line, tex, &tex->WE));
+		return (set_tex_file(line, tex, &tex->we));
 	if (ft_strncmp(line, "EA ", 3) == 0)
-		return (set_tex_file(line, tex, &tex->EA));
+		return (set_tex_file(line, tex, &tex->ea));
 	if (ft_strncmp(line, "C ", 2) == 0)
 		return (set_color(line, tex, 'C'));
 	if (ft_strncmp(line, "F ", 2) == 0)
