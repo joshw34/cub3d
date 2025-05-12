@@ -180,6 +180,9 @@ void	validate_map(t_map *map);
 /* validate_map_walls.c */
 void	validate_map_walls(t_map *map, char **map_copy);
 
+/* set_player_data */
+void	set_player_data(t_data *data, t_map *map);
+
 /* error_exit.c */
 void	free_array(char **array);
 void	exit_game(t_data *data, bool error, char *msg);

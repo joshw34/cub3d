@@ -23,7 +23,7 @@ void	found_wall(t_ray *ray, t_player *play, char direction)
 		ray->h_ry = ray->ry;
 		ray->dH = ray_len(ray, play);
 	}
-	ray->dof = 20;
+	ray->dof = 100;
 }
 
 /* for every rx and ry we calculate the array coordiante from the pixel location. if the pixel
@@ -31,8 +31,12 @@ void	found_wall(t_ray *ray, t_player *play, char direction)
 void	map_pixel_to_array(t_ray *ray)
 {
 	float	temp;
+	int		width;
+	int		height;
 
-	if ((ray->rx < 1 || ray->rx > 640) || (ray->ry < 1 || ray->ry > 640))
+	width = ray->data->map->len * 64;
+	height = ray->data->map->lines * 64;
+	if ((ray->rx < 1 || ray->rx > width) || (ray->ry < 1 || ray->ry > height))
 	{
 		ray->mx = -1;
 		ray->my = -1;

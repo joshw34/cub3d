@@ -33,8 +33,6 @@ void	init_texture_struct(t_data *data)
 void	init_player_struct(t_data *data)
 {
 	data->player = ft_calloc(1, sizeof(t_player));
-	data->player->p_x = 550.0;
-	data->player->p_y = 416.0;
 	data->player->data = data;
 }
 

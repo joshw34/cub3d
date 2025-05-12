@@ -46,4 +46,5 @@ void	parsing(t_data *data, t_map *map)
 	get_textures(map, data->tex, &total_lines);
 	get_map(map, &total_lines);
 	validate_map(map);
+	set_player_data(data, map);
 }
