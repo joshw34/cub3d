@@ -47,11 +47,11 @@
 # define ERROR_6 "Calloc: Texture Struct\n"
 # define ERROR_7 "Calloc: Ray Struct\n"
 # define ERROR_8 "Calloc: Game Struct\n"
-# define ERROR_9 "Multiple Definitions of a texture in mapfile\n"
-# define ERROR_10 "Couldnt open texture file\n"
+# define ERROR_9 "Multiple Definitions of a texture in mapfile (see above)\n"
+# define ERROR_10 "Couldnt open texture file (see above)\n"
 # define ERROR_11 "Multiple Definitions of color in mapfile\n"
 # define ERROR_12 "Invalid color value in mapfile\n"
-# define ERROR_13 "Invalid data (above) in mapfile\n"
+# define ERROR_13 "Invalid data in mapfile (see above)\n"
 # define ERROR_14 "Required textures/colors not found in mapfile\n"
 # define ERROR_15 "No map found / map data not at end of mapfile\n"
 # define ERROR_16 "No player start position found\n"
@@ -162,6 +162,7 @@ typedef struct s_data
 }	t_data;
 
 /* parsing.c */
+void	parsing_error(t_data *data, char *msg, char *line);
 void	parsing(t_data *data, t_map *map);
 
 /* parsing_utils.c */

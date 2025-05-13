@@ -53,11 +53,7 @@ static	bool	is_valid_map_line(t_map *map, char *line)
 	while (line[i])
 	{
 		if (line[i] != ' ' && line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
-		{
-			printf("%s\n", line);
-			free(line);
-			exit_game(map->data, true, ERROR_13);
-		}
+			parsing_error(map->data, ERROR_13, line);
 		i++;
 	}
 	map->lines++;
@@ -99,6 +95,8 @@ void	get_map(t_map *map, int *total_lines)
 		exit_game(map->data, true, ERROR_3);
 	map->map = ft_calloc(map->lines + 1, sizeof(char *));
 	copy_map(map, *total_lines);
+	if (!map->map[0])
+		exit_game(map->data, true, ERROR_15);
 	remove_map_nl(map);
 	map->size_x = map->len * 10;
 	map->size_y = map->lines * 10;

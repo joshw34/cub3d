@@ -1,0 +1,20 @@
+NO ./textures/north
+
+SO ./textures/south
+
+
+F 0,255,0
+
+
+WE ./textures/west
+
+EA ./textures/east
+
+
+
+C 0,0,255
+
+
+
+
+

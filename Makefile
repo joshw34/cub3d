@@ -1,4 +1,4 @@
-NAME = test 
+NAME = cub3d
 
 SRC_DIR = ./src
 PARSING_SRC_DIR = ./src/parsing

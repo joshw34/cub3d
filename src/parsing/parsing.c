@@ -1,5 +1,21 @@
 #include "../../inc/test.h"
 
+void	parsing_error(t_data *data, char *msg, char *line)
+{
+	if (line)
+	{
+		printf("Line: %s\n", line);
+		free(line);
+	}
+	line = get_next_line(data->map->fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(data->map->fd);
+	}
+	exit_game(data, true, msg);
+}
+
 static	void	check_extension(t_map *map)
 {
 	char	*file;

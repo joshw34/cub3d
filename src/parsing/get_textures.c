@@ -34,19 +34,19 @@ static	bool	set_color(char *line, t_tex *tex, char id)
 	int	b;
 	char	**split;
 	if ((id == 'C' && tex->C != -1) || (id == 'F' && tex->F != -1))
-		exit_game(tex->data, true, ERROR_11);
+		parsing_error(tex->data, ERROR_11, line);
 	split = ft_split(line + 2, ',');
 	if (!check_color_value(split))
 	{
 		free_array(split);
-		exit_game(tex->data, true, ERROR_12);
+		parsing_error(tex->data, ERROR_12, line);
 	}
 	r = ft_atoi(split[0]);
 	g = ft_atoi(split[1]);
 	b = ft_atoi(split[2]);
 	free_array(split);
 	if (r > 255 || g > 255 || b > 255)
-		exit_game(tex->data, true, ERROR_12);
+		parsing_error(tex->data, ERROR_12, line);
 	if (id == 'C')
 		tex->C = rgb_color_conversion(tex->data->init, r, g, b);
 	else if (id == 'F')
@@ -57,10 +57,10 @@ static	bool	set_color(char *line, t_tex *tex, char id)
 static	bool	set_tex_file(char *line, t_tex *tex, char **file)
 {
 	if (*file)
-		exit_game(tex->data, true, ERROR_9);
+		parsing_error(tex->data, ERROR_9, line);
 	*file = ft_strdup(line + 3);
 	if (access(*file, F_OK) != 0 || access(*file, R_OK) != 0)
-		exit_game(tex->data, true, ERROR_10);
+		parsing_error(tex->data, ERROR_10, line);
 	return (true);
 }
 
@@ -81,10 +81,7 @@ static	bool	check_line(char *line, t_tex *tex)
 	else
 	{
 		if (ft_strlen(line) > 0 && is_junk_line(line))
-		{
-			printf("%s\n", line);
-			exit_game(tex->data, true, ERROR_13);
-		}
+			parsing_error(tex->data, ERROR_13, line);
 	};
 	return (false);
 }

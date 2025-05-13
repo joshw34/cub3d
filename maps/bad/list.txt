@@ -1,0 +1,27 @@
+map1		- no file extension
+
+map2.ber	- wrong file extension
+
+map3.cub	- no player start position
+
+map4.cub	- more than one player start position
+
+map5.cub	- invalid character in map
+
+map6.cub	- map not enclosed by walls
+
+map7.cub	- incorrect texture file
+
+map8.cub	- incorrect colour
+
+map9.cub	- incomplete colour value
+
+map10.cub	- map not at end of file
+
+map11.cub	- duplicate texture definition
+
+map12.cub	- invalid data in mapfile
+
+map13.cub	- duplicate colour definition
+
+map14.cub	- no map
