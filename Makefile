@@ -1,55 +1,67 @@
-NAME = cub3d
+NAME = test 
 
 SRC_DIR = ./src
+PARSING_SRC_DIR = ./src/parsing
+EXIT_FREE_SRC_DIR = ./src/exit_free
+GAME_SRC_DIR = ./src/game
+
 INC_DIR = ./inc
 LIBFT_DIR = ./libft
+MLX_DIR = /home/jwhitley/.local/mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
-MLX_FLAGS = -lmlx -lXext -lX11
+LIBMLX = $(MLX_DIR)/libmlx.a
+MLX_FLAGS = -lXext -lX11
 
-SRC_FILES = $(SRC_DIR)/cub3d.c \
-			$(SRC_DIR)/draw_map.c \
+SRC_FILES = $(SRC_DIR)/main.c \
+			$(SRC_DIR)/debug_funcs.c \
+			$(PARSING_SRC_DIR)/parsing.c \
+			$(PARSING_SRC_DIR)/parsing_utils.c \
+			$(PARSING_SRC_DIR)/get_textures.c \
+			$(PARSING_SRC_DIR)/get_map.c \
+			$(PARSING_SRC_DIR)/validate_map.c \
+			$(PARSING_SRC_DIR)/validate_map_walls.c \
+			$(PARSING_SRC_DIR)/set_player_data.c \
+			$(EXIT_FREE_SRC_DIR)/error_exit.c \
+			$(GAME_SRC_DIR)/image_bg_game.c \
+			$(GAME_SRC_DIR)/run_game.c \
+			$(GAME_SRC_DIR)/game_hooks.c \
+			$(GAME_SRC_DIR)/raycasting.c \
+			$(GAME_SRC_DIR)/raycasting_utils.c \
+			$(GAME_SRC_DIR)/raycasting_utils_2.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 REMOVE = rm -f
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -Wno-unused-result -I$(INC_DIR) -I$(LIBFT_DIR)
+CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_DIR)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@echo "$(NAME): Linking"
-	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(LIBMLX) $(MLX_FLAGS) -lm -o $(NAME)
 	@echo "$(NAME): Ready"
 
 $(LIBFT):
 	@echo "Libft: Compiling"
 	@make -s all -C $(LIBFT_DIR)
 
-bonus: $(BONUS_NAME)
-
-$(BONUS_NAME): $(LIBFT) $(BONUS_OBJ_FILES)
-	@echo "so_long bonus: Linking"
-	@$(CC) $(BONUS_OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(BONUS_NAME)
-	@mv so_long_bonus so_long
-	@echo "so_long bonus: Ready"
-
 .c.o:
 	@$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
 	@make -s clean -C $(LIBFT_DIR)
-	@$(REMOVE) $(OBJ_FILES) $(BONUS_OBJ_FILES)
+	@$(REMOVE) $(OBJ_FILES)
 	@echo "so_long: Object Files Removed"
 
 fclean:
 	@make -s fclean -C $(LIBFT_DIR)
-	@$(REMOVE) $(OBJ_FILES) $(BONUS_OBJ_FILES)
+	@$(REMOVE) $(OBJ_FILES)
 	@echo "so_long: Object Files Removed"
 	@$(REMOVE) $(NAME)
 	@echo "so_long: Executable Removed"
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
