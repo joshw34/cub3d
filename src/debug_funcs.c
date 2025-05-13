@@ -1,6 +1,6 @@
 #include "../inc/test.h"
 
-void	db_show_first_hit(t_data *data)
+/*void	db_show_first_hit(t_data *data)
 {
 	mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->rx - 5, data->ray->ry - 5);
 }
@@ -11,7 +11,7 @@ void	db_show_both_hits(t_data *data)
 		mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->h_rx - 5, data->ray->h_ry - 5);
 	if ((data->ray->v_rx > 0 && data->ray->v_rx < 641) && (data->ray->v_ry > 0 && data->ray->v_ry < 641))
 		mlx_put_image_to_window(data->init, data->map_win, data->ray->y_hit_img, data->ray->v_rx - 5, data->ray->v_ry - 5);
-}
+}*/
 void	db_print_player_x_y(t_player *player)
 {
 

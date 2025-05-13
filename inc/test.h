@@ -119,13 +119,11 @@ typedef struct s_ray
 	double	ra;
 	float	xo;
 	float	yo;
-	void	*y_hit_img;
 	t_data	*data;
 }	t_ray;
 
 typedef struct s_player
 {
-	void		*p_img;
 	float		p_x;
 	float		p_y;
 	float		p_dx;
@@ -161,6 +159,14 @@ typedef struct s_data
 	int			endian;
 }	t_data;
 
+/* init_structs.c */
+
+void	init_game_struct(t_data *data);
+void	init_ray_struct(t_data *data);
+void	init_texture_struct(t_data *data);
+void	init_player_struct(t_data *data);
+void	init_map_struct(t_data *data, char *map_file);
+
 /* parsing.c */
 void	parsing_error(t_data *data, char *msg, char *line);
 void	parsing(t_data *data, t_map *map);
@@ -189,6 +195,11 @@ void	set_player_data(t_data *data, t_map *map);
 /* error_exit.c */
 void	free_array(char **array);
 void	exit_game(t_data *data, bool error, char *msg);
+
+/* free_structs.c */
+void	free_game_struct(t_data *data);
+void	free_tex_struct(t_data *data);
+void	free_map_struct(t_data *data);
 
 /* images_bg_game.c */
 void	set_walls(t_data *data, t_game *game, int x);

@@ -1,6 +1,7 @@
 NAME = cub3d
 
 SRC_DIR = ./src
+INIT_SRC_DIR = ./src/init
 PARSING_SRC_DIR = ./src/parsing
 EXIT_FREE_SRC_DIR = ./src/exit_free
 GAME_SRC_DIR = ./src/game
@@ -14,6 +15,7 @@ LIBMLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -lXext -lX11
 
 SRC_FILES = $(SRC_DIR)/main.c \
+			$(INIT_SRC_DIR)/init_structs.c \
 			$(SRC_DIR)/debug_funcs.c \
 			$(PARSING_SRC_DIR)/parsing.c \
 			$(PARSING_SRC_DIR)/parsing_utils.c \
@@ -23,6 +25,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSING_SRC_DIR)/validate_map_walls.c \
 			$(PARSING_SRC_DIR)/set_player_data.c \
 			$(EXIT_FREE_SRC_DIR)/error_exit.c \
+			$(EXIT_FREE_SRC_DIR)/free_structs.c \
 			$(GAME_SRC_DIR)/image_bg_game.c \
 			$(GAME_SRC_DIR)/run_game.c \
 			$(GAME_SRC_DIR)/game_hooks.c \
