@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 static	bool	check_color_value(char	**rgb)
 {

@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 static	void	remove_map_nl(t_map *map)
 {

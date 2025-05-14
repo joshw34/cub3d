@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 void	parsing_error(t_data *data, char *msg, char *line)
 {

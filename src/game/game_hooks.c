@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* Radians = 0 -> 2PI. Reset angle to 2PI when reaching zero as negative is invalid*/
 /* p_dx and p_dy = amount of movement for one key press. See pdx_pdy diagram */

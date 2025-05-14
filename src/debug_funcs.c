@@ -1,4 +1,4 @@
-#include "../inc/test.h"
+#include "../inc/cub3d.h"
 
 /*void	db_show_first_hit(t_data *data)
 {

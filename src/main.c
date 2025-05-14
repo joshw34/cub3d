@@ -1,4 +1,4 @@
-#include "../inc/test.h"
+#include "../inc/cub3d.h"
 
 t_data	*init_structs(char	*map_file)
 {

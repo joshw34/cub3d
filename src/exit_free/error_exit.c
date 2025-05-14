@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 void	free_array(char **array)
 {

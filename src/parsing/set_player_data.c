@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 static	void	player_details(t_player *p, t_map *m, int i, int j)
 {

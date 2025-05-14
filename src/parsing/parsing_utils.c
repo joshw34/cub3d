@@ -1,5 +1,4 @@
-
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 bool	is_junk_line(char *line)
 {

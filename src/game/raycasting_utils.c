@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 float	ray_len(t_ray *ray, t_player *play)
 {

@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* Everything needed to draw the final 3d image */
 void	init_game_struct(t_data *data)

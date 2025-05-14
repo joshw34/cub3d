@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* Initialise all images then redraw in loop after every keypress */
 void	init_map(t_data *data)

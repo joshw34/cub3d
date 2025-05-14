@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* called from raycasting loop for each vertical line
    lineH = length of vertical line to draw

@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 void	fill_copy(t_map *map, char **copy)
 {

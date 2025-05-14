@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 static	void	flood_clean(char **m_cp, bool **check, t_cell *queue, int rows)
 {

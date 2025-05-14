@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* This is the same for h and v, moved her to avoid repetition.
    if player is facing exactly left/right no horizontal walls will be hit, if facing up/down no vertical will be hit.

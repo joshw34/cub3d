@@ -1,4 +1,4 @@
-#include "../../inc/test.h"
+#include "../../inc/cub3d.h"
 
 /* set the ray ang le for the next raycast loop. correct value if out of bounds */
 void	set_next_angle(t_ray *ray)
