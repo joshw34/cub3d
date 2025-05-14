@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:45:06 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:45:48 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	fill_copy(t_map *map, char **copy)
 {
-	int i;
+	int	i;
 	int	j;
 
 	i = 0;
@@ -21,9 +33,9 @@ void	fill_copy(t_map *map, char **copy)
 
 static	char	**copy_map(t_map *map)
 {
-	int	i;
+	int		i;
 	char	**copy;
-	
+
 	i = 0;
 	copy = ft_calloc(map->lines + 3, sizeof(char *));
 	if (!map)
@@ -88,6 +100,7 @@ void	check_map_content(t_map *m, char **map)
 void	validate_map(t_map *map)
 {
 	char	**map_copy;
+
 	check_map_content(map, map->map);
 	map_copy = copy_map(map);
 	validate_map_walls(map, map_copy);

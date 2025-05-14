@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:38:33 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:38:35 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 /* Everything needed to draw the final 3d image */
@@ -24,8 +36,8 @@ void	init_texture_struct(t_data *data)
 	if (!data->tex)
 		exit_game(data, true, ERROR_6);
 	data->tex->data = data;
-	data->tex->F = -1;
-	data->tex->C = -1;
+	data->tex->f = -1;
+	data->tex->c = -1;
 }
 
 void	init_player_struct(t_data *data)

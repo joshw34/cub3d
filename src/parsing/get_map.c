@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_map.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:38:53 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:40:10 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static	void	remove_map_nl(t_map *map)
@@ -52,7 +64,9 @@ static	bool	is_valid_map_line(t_map *map, char *line)
 	i = 0;
 	while (line[i])
 	{
-		if (line[i] != ' ' && line[i] != '1' && line[i] != '0' && line[i] != 'N' && line[i] != 'S' && line[i] != 'E' && line[i] != 'W')
+		if (line[i] != ' ' && line[i] != '1' && line[i] != '0'
+			&& line[i] != 'N' && line[i] != 'S' && line[i] != 'E'
+			&& line[i] != 'W')
 			parsing_error(map->data, ERROR_13, line);
 		i++;
 	}
@@ -68,7 +82,7 @@ static	void	count_map_lines(t_map *map, int *total_lines)
 	line = get_next_line(map->fd);
 	if (!line)
 		exit_game(map->data, true, ERROR_15);
-	while(line)
+	while (line)
 	{
 		line_len = ft_strlen(line);
 		if (line[line_len - 1] == '\n')

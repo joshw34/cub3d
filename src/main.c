@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 12:40:44 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 12:41:08 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../inc/cub3d.h"
 
 t_data	*init_structs(char	*map_file)
@@ -20,6 +32,7 @@ t_data	*init_structs(char	*map_file)
 int	main(int ac, char **av)
 {
 	t_data	*data;
+
 	if (ac != 2)
 		exit(EXIT_FAILURE);
 	data = init_structs(av[1]);

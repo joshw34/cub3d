@@ -6,12 +6,12 @@
 /*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:55:41 by jwhitley          #+#    #+#             */
-/*   Updated: 2025/05/14 11:43:49 by jwhitley         ###   ########.fr       */
+/*   Updated: 2025/05/14 13:35:50 by jwhitley         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef TEST_H
-# define TEST_H
+#ifndef CUB3D_H
+# define CUB3D_H
 
 # include "../libft/libft.h"
 # include "/home/jwhitley/.local/mlx/mlx.h" 
@@ -82,8 +82,8 @@ typedef struct s_textures
 	char	*so;
 	char	*we;
 	char	*ea;
-	int		F;
-	int		C;
+	int		f;
+	int		c;
 	t_data	*data;
 }	t_tex;
 
@@ -94,7 +94,7 @@ typedef struct s_game
 	void	*game_img;
 	char	*game_addr;
 	int		total_bytes;
-	int		lineH;
+	int		line_h;
 	int		start_y;
 	int		end_y;
 	char	direction;
@@ -113,9 +113,9 @@ typedef struct s_ray
 	float	h_rx;
 	float	v_ry;
 	float	h_ry;
-	float	dH;
-	float	dV;
-	double	dRay;
+	float	d_h;
+	float	d_v;
+	double	d_ray;
 	double	ra;
 	float	xo;
 	float	yo;
@@ -207,7 +207,7 @@ void	get_game_img_data(t_data *data, t_game *game);
 void	set_image_data(t_data *data);
 
 /* run_game.c */
-void	init_map(t_data *data);
+void	init_map(t_data *data, t_game *game);
 void	run_game(t_data *data);
 
 /* game_hooks.c */
@@ -229,15 +229,5 @@ void	reset_ray_data(t_ray *ray);
 void	set_next_angle(t_ray *ray);
 void	fix_fisheye(t_ray *ray, t_player *player);
 void	find_closest_hit(t_ray *ray, t_game *game);
-
-/* debug_funcs.c */
-void	db_show_first_hit(t_data *data);
-void	db_show_both_hits(t_data *data);
-void	db_print_player_x_y(t_player *player);
-void	db_draw_line(t_data *data, t_player *play);
-void	db_print_pdx_pdy(t_player *p);
-void	db_err_print(char *str);
-void	db_print_map_info(t_data *data, bool add_spaces);
-void	db_print_tex_info(t_tex *tex);
 
 #endif

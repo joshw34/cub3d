@@ -1,8 +1,20 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_textures.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:43:04 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:44:12 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static	bool	check_color_value(char	**rgb)
 {
-	int i;
+	int	i;
 	int	j;
 	int	len;
 
@@ -29,11 +41,12 @@ static	bool	check_color_value(char	**rgb)
 
 static	bool	set_color(char *line, t_tex *tex, char id)
 {
-	int	r;
-	int	g;
-	int	b;
+	int		r;
+	int		g;
+	int		b;
 	char	**split;
-	if ((id == 'C' && tex->C != -1) || (id == 'F' && tex->F != -1))
+
+	if ((id == 'C' && tex->c != -1) || (id == 'F' && tex->f != -1))
 		parsing_error(tex->data, ERROR_11, line);
 	split = ft_split(line + 2, ',');
 	if (!check_color_value(split))
@@ -48,9 +61,9 @@ static	bool	set_color(char *line, t_tex *tex, char id)
 	if (r > 255 || g > 255 || b > 255)
 		parsing_error(tex->data, ERROR_12, line);
 	if (id == 'C')
-		tex->C = rgb_color_conversion(tex->data->init, r, g, b);
+		tex->c = rgb_color_conversion(tex->data->init, r, g, b);
 	else if (id == 'F')
-		tex->F = rgb_color_conversion(tex->data->init, r, g, b);
+		tex->f = rgb_color_conversion(tex->data->init, r, g, b);
 	return (true);
 }
 
@@ -82,7 +95,7 @@ static	bool	check_line(char *line, t_tex *tex)
 	{
 		if (ft_strlen(line) > 0 && is_junk_line(line))
 			parsing_error(tex->data, ERROR_13, line);
-	};
+	}
 	return (false);
 }
 
@@ -91,7 +104,7 @@ void	get_textures(t_map *map, t_tex *tex, int *total_lines)
 	int		count;
 	char	*line;
 	int		line_len;
-	
+
 	line = get_next_line(map->fd);
 	count = 0;
 	while (line)

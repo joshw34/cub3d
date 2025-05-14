@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing_utils.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:44:31 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:44:48 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 bool	is_junk_line(char *line)
@@ -6,7 +18,7 @@ bool	is_junk_line(char *line)
 
 	i = 0;
 	while (line[i] == ' ')
-			i++;
+		i++;
 	if (line[i] != '1')
 		return (true);
 	return (false);
@@ -14,7 +26,7 @@ bool	is_junk_line(char *line)
 
 int	rgb_color_conversion(void *mlx, int r, int g, int b)
 {
-	int color;
+	int	color;
 	int	mlx_color;
 
 	color = (r << 16) | (g << 8) | b;

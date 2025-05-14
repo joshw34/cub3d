@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   error_exit.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 12:42:01 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 12:42:03 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	free_array(char **array)
@@ -35,8 +47,6 @@ static	void	free_data(t_data *data)
 	free(data);
 }
 
-/* Used for normal and error exits, free all data. If error = true, print "Error:" & message to stderr.
-   No error: prints msg to stdout */
 void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)

@@ -16,7 +16,6 @@ MLX_FLAGS = -lXext -lX11
 
 SRC_FILES = $(SRC_DIR)/main.c \
 			$(INIT_SRC_DIR)/init_structs.c \
-			$(SRC_DIR)/debug_funcs.c \
 			$(PARSING_SRC_DIR)/parsing.c \
 			$(PARSING_SRC_DIR)/parsing_utils.c \
 			$(PARSING_SRC_DIR)/get_textures.c \
@@ -56,14 +55,14 @@ $(LIBFT):
 clean:
 	@make -s clean -C $(LIBFT_DIR)
 	@$(REMOVE) $(OBJ_FILES)
-	@echo "so_long: Object Files Removed"
+	@echo "cub3d: Object Files Removed"
 
 fclean:
 	@make -s fclean -C $(LIBFT_DIR)
 	@$(REMOVE) $(OBJ_FILES)
-	@echo "so_long: Object Files Removed"
+	@echo "cub3d: Object Files Removed"
 	@$(REMOVE) $(NAME)
-	@echo "so_long: Executable Removed"
+	@echo "cub3d: Executable Removed"
 
 re: fclean all
 

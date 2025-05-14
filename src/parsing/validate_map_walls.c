@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   validate_map_walls.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:41:55 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:42:34 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 static	void	flood_clean(char **m_cp, bool **check, t_cell *queue, int rows)
@@ -65,7 +77,7 @@ void	flood_fill(t_map *map, char **map_copy, bool **checked, t_cell *queue)
 	int		front;
 	int		back;
 	t_cell	current;
-	
+
 	front = 0;
 	back = 0;
 	queue[back++] = (t_cell){.y = 0, .x = 0};
@@ -96,7 +108,7 @@ void	validate_map_walls(t_map *map, char **map_copy)
 
 	i = 0;
 	s_map_copy = (map->lines + 2) * (map->len + 2);
-	checked = ft_calloc(map->lines + 2, sizeof(bool*));
+	checked = ft_calloc(map->lines + 2, sizeof(bool *));
 	queue = ft_calloc(s_map_copy, sizeof(t_cell));
 	if (!checked || !queue)
 		exit_game(map->data, true, ERROR_19);

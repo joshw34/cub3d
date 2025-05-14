@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:40:41 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:40:54 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 void	parsing_error(t_data *data, char *msg, char *line)
@@ -30,7 +42,7 @@ static	void	check_extension(t_map *map)
 
 void	parsing(t_data *data, t_map *map)
 {
-	int total_lines;
+	int	total_lines;
 
 	total_lines = 0;
 	check_extension(map);

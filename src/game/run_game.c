@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   run_game.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/05/14 13:33:53 by jwhitley          #+#    #+#             */
+/*   Updated: 2025/05/14 13:36:39 by jwhitley         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../../inc/cub3d.h"
 
 /* Initialise all images then redraw in loop after every keypress */
-void	init_map(t_data *data)
+void	init_map(t_data *data, t_game *game)
 {
-	mlx_put_image_to_window(data->init, data->rc_win, data->game->game_img
-		, 0, 0);
+	mlx_put_image_to_window(data->init, data->rc_win,
+		game->game_img, 0, 0);
 }
 
 /* Create mlx, window and image pointers. */
@@ -20,7 +32,7 @@ void	run_game(t_data *data)
 	init_mlx_data(data);
 	set_image_data(data);
 	raycasting(data, data->ray, data->player, data->game);
-	init_map(data);
+	init_map(data, data->game);
 	mlx_hook(data->rc_win, DestroyNotify, 0, &win_close, data);
 	mlx_expose_hook(data->rc_win, &expose_win, data);
 	mlx_hook(data->rc_win, KeyPress, KeyPressMask, &key, data);
