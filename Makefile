@@ -1,4 +1,4 @@
-NAME = cub3d
+NAME = cub3d 
 
 SRC_DIR = ./src
 INIT_SRC_DIR = ./src/init
@@ -8,41 +8,40 @@ GAME_SRC_DIR = ./src/game
 
 INC_DIR = ./inc
 LIBFT_DIR = ./libft
-MLX_DIR = /home/jwhitley/.local/mlx
 
 LIBFT = $(LIBFT_DIR)/libft.a
-LIBMLX = $(MLX_DIR)/libmlx.a
-MLX_FLAGS = -lXext -lX11
+MLX_FLAGS = -lmlx -lXext -lX11
+
 
 SRC_FILES = $(SRC_DIR)/main.c \
-			$(INIT_SRC_DIR)/init_structs.c \
-			$(PARSING_SRC_DIR)/parsing.c \
-			$(PARSING_SRC_DIR)/parsing_utils.c \
-			$(PARSING_SRC_DIR)/get_textures.c \
-			$(PARSING_SRC_DIR)/get_map.c \
-			$(PARSING_SRC_DIR)/validate_map.c \
-			$(PARSING_SRC_DIR)/validate_map_walls.c \
-			$(PARSING_SRC_DIR)/set_player_data.c \
-			$(EXIT_FREE_SRC_DIR)/error_exit.c \
-			$(EXIT_FREE_SRC_DIR)/free_structs.c \
-			$(GAME_SRC_DIR)/image_bg_game.c \
-			$(GAME_SRC_DIR)/run_game.c \
-			$(GAME_SRC_DIR)/game_hooks.c \
-			$(GAME_SRC_DIR)/raycasting.c \
-			$(GAME_SRC_DIR)/raycasting_utils.c \
-			$(GAME_SRC_DIR)/raycasting_utils_2.c \
+	    $(INIT_SRC_DIR)/init_structs.c \
+            $(PARSING_SRC_DIR)/parsing.c \
+            $(PARSING_SRC_DIR)/parsing_utils.c \
+            $(PARSING_SRC_DIR)/get_textures.c \
+            $(PARSING_SRC_DIR)/get_map.c \
+            $(PARSING_SRC_DIR)/validate_map.c \
+            $(PARSING_SRC_DIR)/validate_map_walls.c \
+            $(PARSING_SRC_DIR)/set_player_data.c \
+            $(EXIT_FREE_SRC_DIR)/error_exit.c \
+            $(EXIT_FREE_SRC_DIR)/free_structs.c \
+            $(GAME_SRC_DIR)/image_bg_game.c \
+            $(GAME_SRC_DIR)/run_game.c \
+            $(GAME_SRC_DIR)/game_hooks.c \
+            $(GAME_SRC_DIR)/raycasting.c \
+            $(GAME_SRC_DIR)/raycasting_utils.c \
+            $(GAME_SRC_DIR)/raycasting_utils_2.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
 REMOVE = rm -f
 CC = clang
-CFLAGS = -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIBFT_DIR)
+CFLAGS = -Wall -Werror -Wextra -Wno-unused-result -I$(INC_DIR) -I$(LIBFT_DIR)
 
 all: $(NAME)
 
 $(NAME): $(LIBFT) $(OBJ_FILES)
 	@echo "$(NAME): Linking"
-	@$(CC) $(OBJ_FILES) $(LIBFT) $(LIBMLX) $(MLX_FLAGS) -lm -o $(NAME)
+	@$(CC) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -lm -o $(NAME)
 	@echo "$(NAME): Ready"
 
 $(LIBFT):

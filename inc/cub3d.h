@@ -14,8 +14,8 @@
 # define CUB3D_H
 
 # include "../libft/libft.h"
-# include "/home/jwhitley/.local/mlx/mlx.h" 
-//# include <mlx.h>
+//# include "/home/jwhitley/.local/mlx/mlx.h" 
+# include <mlx.h>
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
