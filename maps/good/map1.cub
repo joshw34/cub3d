@@ -1,13 +1,13 @@
-NO ./textures/north
+NO ./textures/planks.xpm
 
-SO ./textures/south
+SO ./textures/purplestone.xpm
 
 
 F 0,255,0
 
-WE ./textures/west
+WE ./textures/94B68D67-F38A-48A2-808B-B97C9116898B_1_.xpm
 
-EA ./textures/east
+EA ./textures/wood.xpm
 
 C 0,0,255
 

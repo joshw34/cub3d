@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   image_bg_game.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cngogang <cngogang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:47:57 by jwhitley          #+#    #+#             */
-/*   Updated: 2025/05/14 12:54:02 by jwhitley         ###   ########.fr       */
+/*   Updated: 2025/05/21 18:58:35 by cngogang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,16 @@ void	set_walls(t_data *data, t_game *game, int x)
 		game->line_h = WINY;
 	game->start_y = (WINY / 2) - (game->line_h / 2);
 	game->end_y = game->start_y + game->line_h;
+	game->start_y_first_value = game->start_y;
 	while (game->start_y < game->end_y)
 	{
 		pixel = (int *)(game->game_addr + (game->start_y * data->ln_len + x
 					* (data->bpp / 8)));
 		if (game->direction == 'v')
-			*pixel = rgb_color_conversion(data->init, 255, 0, 0);
+			*pixel = get_texel_value(data);	
+		//*pixel = rgb_color_conversion(data->init, 255, 0, 0);
 		else if (game->direction == 'h')
-			*pixel = rgb_color_conversion(data->init, 150, 0, 0);
+			*pixel = get_texel_value(data);	
 		game->start_y++;
 	}
 }

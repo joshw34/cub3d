@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_exit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cngogang <cngogang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/14 12:42:01 by jwhitley          #+#    #+#             */
-/*   Updated: 2025/05/14 12:42:03 by jwhitley         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:27:53 by cngogang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)
 		free_data(data);
+	printf("here\n");
 	if (error == true)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);

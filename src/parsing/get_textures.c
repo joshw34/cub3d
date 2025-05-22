@@ -122,4 +122,5 @@ void	get_textures(t_map *map, t_tex *tex, int *total_lines)
 	}
 	if (count != 6)
 		exit_game(map->data, true, ERROR_14);
+	load_texture_img(map->data);
 }

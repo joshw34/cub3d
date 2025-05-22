@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jwhitley <jwhitley@student.42nice.fr>      +#+  +:+       +#+        */
+/*   By: cngogang <cngogang@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/12 14:55:41 by jwhitley          #+#    #+#             */
-/*   Updated: 2025/05/14 13:35:50 by jwhitley         ###   ########.fr       */
+/*   Updated: 2025/05/22 16:45:33 by cngogang         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include "../libft/libft.h"
 # include "/home/jwhitley/.local/mlx/mlx.h" 
-//# include <mlx.h>
+//# include "/home/cngogang/mlx/mlx.h"
 # include <X11/X.h>
 # include <X11/keysym.h>
 # include <fcntl.h>
@@ -60,6 +60,7 @@
 # define ERROR_19 "Calloc: Map Validation: checked / cell array\n"
 # define ERROR_20 "Map not surrounded by walls\n"
 # define ERROR_21 "Invalid mapfile: .cub file required"
+# define ERROR_22 "Invalid xpm file"
 
 typedef struct s_data	t_data;
 
@@ -87,6 +88,24 @@ typedef struct s_textures
 	t_data	*data;
 }	t_tex;
 
+typedef struct s_texture_img
+{
+	void	*tex_img;
+	int		*tex_addr;
+	int		width;
+	int		length;
+	int 	bpp;
+	int		size_line;
+	int		endian;
+
+
+}	t_texture_img;
+
+typedef struct s_tex_set
+{
+	t_texture_img	*textures_set;
+}	t_tex_set;
+
 typedef struct s_game
 {
 	void	*bg_img;
@@ -96,6 +115,7 @@ typedef struct s_game
 	int		total_bytes;
 	int		line_h;
 	int		start_y;
+	int		start_y_first_value;
 	int		end_y;
 	char	direction;
 	t_data	*data;
@@ -119,11 +139,13 @@ typedef struct s_ray
 	double	ra;
 	float	xo;
 	float	yo;
+	void	*y_hit_img;
 	t_data	*data;
 }	t_ray;
 
 typedef struct s_player
 {
+	void		*p_img;
 	float		p_x;
 	float		p_y;
 	float		p_dx;
@@ -134,6 +156,7 @@ typedef struct s_player
 
 typedef struct s_map
 {
+	void	*m_img;
 	char	**map;
 	char	*map_file;
 	int		fd;
@@ -154,6 +177,7 @@ typedef struct s_data
 	t_tex		*tex;
 	t_ray		*ray;
 	t_game		*game;
+	t_tex_set	*tex_set;
 	int			bpp;
 	int			ln_len;
 	int			endian;
@@ -200,6 +224,7 @@ void	exit_game(t_data *data, bool error, char *msg);
 void	free_game_struct(t_data *data);
 void	free_tex_struct(t_data *data);
 void	free_map_struct(t_data *data);
+void	free_tex_struct_2(t_data *data);
 
 /* images_bg_game.c */
 void	set_walls(t_data *data, t_game *game, int x);
@@ -230,4 +255,19 @@ void	set_next_angle(t_ray *ray);
 void	fix_fisheye(t_ray *ray, t_player *player);
 void	find_closest_hit(t_ray *ray, t_game *game);
 
+/* texture_mapping.c */
+long long int get_texel_value(t_data *data);
+
+/*load_texture_img.c*/
+void load_texture_img(t_data *data);
+
+/* debug_funcs.c */
+void	db_show_first_hit(t_data *data);
+void	db_show_both_hits(t_data *data);
+void	db_print_player_x_y(t_player *player);
+void	db_draw_line(t_data *data, t_player *play);
+void	db_print_pdx_pdy(t_player *p);
+void	db_err_print(char *str);
+void	db_print_map_info(t_data *data, bool add_spaces);
+void	db_print_tex_info(t_tex *tex);
 #endif

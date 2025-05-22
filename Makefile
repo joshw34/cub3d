@@ -9,12 +9,13 @@ GAME_SRC_DIR = ./src/game
 INC_DIR = ./inc
 LIBFT_DIR = ./libft
 MLX_DIR = /home/jwhitley/.local/mlx
-
+#MLX_DIR =/home/cngogang/mlx
 LIBFT = $(LIBFT_DIR)/libft.a
 LIBMLX = $(MLX_DIR)/libmlx.a
 MLX_FLAGS = -lXext -lX11
 
 SRC_FILES = $(SRC_DIR)/main.c \
+			$(SRC_DIR)/debug_funcs.c \
 			$(INIT_SRC_DIR)/init_structs.c \
 			$(PARSING_SRC_DIR)/parsing.c \
 			$(PARSING_SRC_DIR)/parsing_utils.c \
@@ -23,6 +24,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(PARSING_SRC_DIR)/validate_map.c \
 			$(PARSING_SRC_DIR)/validate_map_walls.c \
 			$(PARSING_SRC_DIR)/set_player_data.c \
+			$(PARSING_SRC_DIR)/load_texture_img.c \
 			$(EXIT_FREE_SRC_DIR)/error_exit.c \
 			$(EXIT_FREE_SRC_DIR)/free_structs.c \
 			$(GAME_SRC_DIR)/image_bg_game.c \
@@ -31,6 +33,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(GAME_SRC_DIR)/raycasting.c \
 			$(GAME_SRC_DIR)/raycasting_utils.c \
 			$(GAME_SRC_DIR)/raycasting_utils_2.c \
+			$(GAME_SRC_DIR)/texture_mapping.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
