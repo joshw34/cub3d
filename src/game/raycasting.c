@@ -30,7 +30,6 @@ static	void	cast_common(t_ray *ray, t_player *play, t_map *map, char dir)
 	while (ray->dof < 100)
 	{
 		map_pixel_to_array(ray);
-		//printf("ray->mx == %i && ray->my == %i\n", ray->mx, ray->my);
 		if ((ray->mx >= 0 && ray->mx < map->len)
 			&& (ray->my >= 0 && ray->my < map->lines)
 			&& map->map[ray->my][ray->mx] == '1')
@@ -108,27 +107,21 @@ static	void	cast_h(t_player *play, t_ray *ray, t_map *map)
 void	raycasting(t_data *data, t_ray *ray, t_player *player, t_game *game)
 {
 	ray->r = 0;
-	printf("Before RA == %f\n",ray->ra);
 	ray->ra = player->p_ang - deg_to_rad(30);
 	if (ray->ra < 0)
 		ray->ra += (2 * PI);
 	if (ray->ra > 2 * PI)
 		ray->ra -= (2 * PI);
-	printf("after RA == %f\n",ray->ra);
 	ft_memcpy(game->game_addr, game->bg_addr, game->total_bytes);
 	while (ray->r < 1200)
 	{
-		printf("2.5 angle = %.8f r_value == %i\n", data->ray->ra, data->ray->r);
-		printf("3 angle = %.8f r_value == %i\n", data->ray->ra, data->ray->r);
 		reset_ray_data(ray);
 		cast_h(player, ray, data->map);
 		cast_v(player, ray, data->map);
 		find_closest_hit(ray, game);
 		fix_fisheye(ray, player);
-		printf("1 angle = %.8f r_value == %i\n", data->ray->ra, data->ray->r);
 		set_walls(data, game, ray->r);
 		set_next_angle(ray);
-		printf("2 angle = %.8f r_value == %i\n", data->ray->ra, data->ray->r);
 		ray->r++;
 	}
 	init_map(data, game);

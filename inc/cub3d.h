@@ -39,26 +39,26 @@
 
 # define PI M_PI 
 
-# define ERROR_1 "Calloc: Data Struct\n"
-# define ERROR_2 "Calloc: Map Struct\n"
-# define ERROR_3 "Couldn't open mapfile\n"
-# define ERROR_4 "Calloc: Map Array\n"
-# define ERROR_5 "Strdup: Map Array\n"
-# define ERROR_6 "Calloc: Texture Struct\n"
-# define ERROR_7 "Calloc: Ray Struct\n"
-# define ERROR_8 "Calloc: Game Struct\n"
-# define ERROR_9 "Multiple Definitions of a texture in mapfile (see above)\n"
-# define ERROR_10 "Couldnt open texture file (see above)\n"
-# define ERROR_11 "Multiple Definitions of color in mapfile\n"
-# define ERROR_12 "Invalid color value in mapfile\n"
-# define ERROR_13 "Invalid data in mapfile (see above)\n"
-# define ERROR_14 "Required textures/colors not found in mapfile\n"
-# define ERROR_15 "No map found / map data not at end of mapfile\n"
-# define ERROR_16 "No player start position found\n"
-# define ERROR_17 "More than one player start position found\n"
-# define ERROR_18 "Calloc: Map Validation: map_copy array\n"
-# define ERROR_19 "Calloc: Map Validation: checked / cell array\n"
-# define ERROR_20 "Map not surrounded by walls\n"
+# define ERROR_1 "Calloc: Data Struct"
+# define ERROR_2 "Calloc: Map Struct"
+# define ERROR_3 "Couldn't open mapfile"
+# define ERROR_4 "Calloc: Map Array"
+# define ERROR_5 "Strdup: Map Array"
+# define ERROR_6 "Calloc: Texture Struct"
+# define ERROR_7 "Calloc: Ray Struct"
+# define ERROR_8 "Calloc: Game Struct"
+# define ERROR_9 "Multiple Definitions of a texture in mapfile (see above)"
+# define ERROR_10 "Couldnt open texture file (see above)"
+# define ERROR_11 "Multiple Definitions of color in mapfile"
+# define ERROR_12 "Invalid color value in mapfile"
+# define ERROR_13 "Invalid data in mapfile (see above)"
+# define ERROR_14 "Required textures/colors not found in mapfile"
+# define ERROR_15 "No map found / map data not at end of mapfile"
+# define ERROR_16 "No player start position found"
+# define ERROR_17 "More than one player start position found"
+# define ERROR_18 "Calloc: Map Validation: map_copy array"
+# define ERROR_19 "Calloc: Map Validation: checked / cell array"
+# define ERROR_20 "Map not surrounded by walls"
 # define ERROR_21 "Invalid mapfile: .cub file required"
 # define ERROR_22 "Invalid xpm file"
 
@@ -257,6 +257,9 @@ void	find_closest_hit(t_ray *ray, t_game *game);
 
 /* texture_mapping.c */
 long long int get_texel_value(t_data *data);
+
+/* which_texel_col.c */
+int which_texel_column(t_game *game, t_ray *ray, t_texture_img *texture);
 
 /*load_texture_img.c*/
 void load_texture_img(t_data *data);

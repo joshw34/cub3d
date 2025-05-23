@@ -21,19 +21,16 @@ void	free_game_struct(t_data *data)
 	free(data->game);
 }
 
-void free_tex_struct_2(t_data *data)
+void	free_tex_struct_2(t_data *data)
 {
 	int	i;
-	i = 0;
 
+	i = 0;
 	while (i < 4)
 	{
-		//if ((data->tex_set->textures_set)[i])
-		//	{
-		if ((data->tex_set->textures_set)[i].tex_img)		
-			mlx_destroy_image(data->init, (data->tex_set->textures_set)[i].tex_img);
-				//free(data->tex_set->textures_set[i]);
-		//	}
+		if ((data->tex_set->textures_set)[i].tex_img)
+			mlx_destroy_image(data->init,
+				(data->tex_set->textures_set)[i].tex_img);
 		++i;
 	}
 	free(data->tex_set->textures_set);
@@ -51,11 +48,8 @@ void	free_tex_struct(t_data *data)
 	if (data->tex->we)
 		free(data->tex->we);
 	free(data->tex);
-	printf("A\n");
 	free_tex_struct_2(data);
-	printf("Z\n");
 }
-
 
 void	free_map_struct(t_data *data)
 {

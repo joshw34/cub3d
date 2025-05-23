@@ -34,6 +34,7 @@ SRC_FILES = $(SRC_DIR)/main.c \
 			$(GAME_SRC_DIR)/raycasting_utils.c \
 			$(GAME_SRC_DIR)/raycasting_utils_2.c \
 			$(GAME_SRC_DIR)/texture_mapping.c \
+			$(GAME_SRC_DIR)/which_texel_col.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 

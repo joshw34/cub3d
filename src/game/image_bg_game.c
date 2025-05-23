@@ -31,10 +31,9 @@ void	set_walls(t_data *data, t_game *game, int x)
 		pixel = (int *)(game->game_addr + (game->start_y * data->ln_len + x
 					* (data->bpp / 8)));
 		if (game->direction == 'v')
-			*pixel = get_texel_value(data);	
-		//*pixel = rgb_color_conversion(data->init, 255, 0, 0);
+			*pixel = get_texel_value(data);
 		else if (game->direction == 'h')
-			*pixel = get_texel_value(data);	
+			*pixel = get_texel_value(data);
 		game->start_y++;
 	}
 }

@@ -51,7 +51,6 @@ void	exit_game(t_data *data, bool error, char *msg)
 {
 	if (data)
 		free_data(data);
-	printf("here\n");
 	if (error == true)
 	{
 		ft_putstr_fd("Error\n", STDERR_FILENO);

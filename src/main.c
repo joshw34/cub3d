@@ -23,8 +23,6 @@ t_data	*init_structs(char	*map_file)
 	init_map_struct(data, map_file);
 	init_player_struct(data);
 	init_texture_struct(data);
-	init_ray_struct(data);
-	init_game_struct(data);
 	return (data);
 }
 

@@ -112,6 +112,8 @@ static void	init_mlx_data(t_data *data)
 
 void	run_game(t_data *data)
 {
+	init_ray_struct(data);
+	init_game_struct(data);
 	init_mlx_data(data);
 	set_image_data(data);
 	raycasting(data, data->ray, data->player, data->game);
